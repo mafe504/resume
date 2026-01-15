@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Musa Awad Abu Hadeed | Education Leader & Technologist</title>
+    <meta name="description" content="Portfolio of Musa Awad Abu Hadeed - School Principal, EdTech Leader, and Harvard Graduate Student.">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        harvard: {
+                            DEFAULT: '#A51C30', // Crimson
+                            dark: '#871324',
+                        },
+                        navy: {
+                            DEFAULT: '#0F1F3D',
+                            light: '#1e3a8a',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Merriweather', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom Styles */
+        .hero-pattern {
+            background-color: #f9fafb;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23e5e7eb' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        .timeline-line::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 20px;
+            width: 2px;
+            background: #e5e7eb;
+            z-index: 0;
+        }
+        @media (min-width: 768px) {
+            .timeline-line::before {
+                left: 50%;
+                margin-left: -1px;
+            }
+        }
+    </style>
+</head>
+<body class="font-sans text-slate-800 bg-white antialiased">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-white/95 backdrop-blur-sm border-b border-gray-200 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="#" class="font-serif text-2xl font-bold text-navy tracking-tight">
+                        Musa <span class="text-harvard">Abu Hadeed</span>
+                    </a>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#about" class="text-gray-600 hover:text-harvard font-medium transition-colors">About</a>
+                    <a href="#experience" class="text-gray-600 hover:text-harvard font-medium transition-colors">Experience</a>
+                    <a href="#projects" class="text-gray-600 hover:text-harvard font-medium transition-colors">Projects</a>
+                    <a href="#education" class="text-gray-600 hover:text-harvard font-medium transition-colors">Education</a>
+                    <a href="#contact" class="px-5 py-2.5 bg-harvard hover:bg-harvard-dark text-white rounded-md font-medium transition-colors shadow-sm">
+                        Contact Me
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-gray-600 hover:text-harvard focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Panel -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 absolute w-full shadow-lg">
+            <div class="px-4 pt-2 pb-6 space-y-2">
+                <a href="#about" class="block px-3 py-3 text-base font-medium text-gray-700 hover:text-harvard hover:bg-gray-50 rounded-md">About</a>
+                <a href="#experience" class="block px-3 py-3 text-base font-medium text-gray-700 hover:text-harvard hover:bg-gray-50 rounded-md">Experience</a>
+                <a href="#projects" class="block px-3 py-3 text-base font-medium text-gray-700 hover:text-harvard hover:bg-gray-50 rounded-md">Projects</a>
+                <a href="#education" class="block px-3 py-3 text-base font-medium text-gray-700 hover:text-harvard hover:bg-gray-50 rounded-md">Education</a>
+                <a href="#contact" class="block px-3 py-3 text-base font-medium text-harvard font-semibold hover:bg-gray-50 rounded-md">Contact Me</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 hero-pattern overflow-hidden" id="home">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="flex flex-col-reverse lg:flex-row items-center gap-12 lg:gap-20">
+                <div class="w-full lg:w-3/5 text-center lg:text-left animate-fade-in-up">
+                    <div class="inline-flex items-center px-3 py-1 rounded-full bg-blue-50 text-navy text-sm font-semibold mb-6 border border-blue-100">
+                        <i class="fas fa-university mr-2"></i> Harvard Graduate Student '26
+                    </div>
+                    <h1 class="text-4xl lg:text-6xl font-serif font-bold text-navy mb-6 leading-tight">
+                        Bridging Pedagogy, <br>
+                        <span class="text-harvard">Technology</span> & Leadership.
+                    </h1>
+                    <p class="text-lg text-gray-600 mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                        Forward-thinking School Principal and EdTech Leader with over 12 years of experience transforming educational environments through digital innovation, renewable energy, and strategic leadership.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                        <a href="#contact" class="px-8 py-3.5 bg-harvard hover:bg-harvard-dark text-white rounded-md font-semibold transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5 text-center">
+                            Get in Touch
+                        </a>
+                        <a href="#projects" class="px-8 py-3.5 bg-white text-navy border border-gray-300 hover:border-navy hover:text-harvard rounded-md font-semibold transition-all shadow-sm hover:shadow-md text-center">
+                            View Portfolio
+                        </a>
+                    </div>
+                    
+                    <div class="mt-10 flex items-center justify-center lg:justify-start space-x-6 text-gray-500">
+                        <a href="https://linkedin.com/in/mhadeed" target="_blank" class="hover:text-blue-600 transition-colors text-2xl"><i class="fab fa-linkedin"></i></a>
+                        <a href="mailto:mafe504@gmail.com" class="hover:text-red-500 transition-colors text-2xl"><i class="fas fa-envelope"></i></a>
+                        <a href="https://github.com/mafe504" target="_blank" class="hover:text-gray-900 transition-colors text-2xl"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                
+                <div class="w-full lg:w-2/5 flex justify-center lg:justify-end">
+                    <div class="relative w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96">
+                        <div class="absolute inset-0 bg-harvard rounded-2xl transform rotate-6 opacity-20"></div>
+                        <div class="absolute inset-0 bg-navy rounded-2xl transform -rotate-6 opacity-20"></div>
+                        <img src="https://raw.githubusercontent.com/mafe504/resume/main/539962601_1137691368412008_8476428806153331712_n.jpg" 
+                             alt="Musa Awad Abu Hadeed" 
+                             class="relative w-full h-full object-cover rounded-2xl shadow-2xl border-4 border-white"
+                             onerror="this.src='https://ui-avatars.com/api/?name=Musa+Abu+Hadeed&background=0F1F3D&color=fff&size=512'">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Core Competencies -->
+    <section class="py-16 bg-white border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                <div class="p-6 rounded-xl bg-gray-50 hover:bg-gray-100 transition-colors duration-300">
+                    <div class="w-14 h-14 bg-red-100 text-harvard rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
+                        <i class="fas fa-chess-knight"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-navy mb-2">Strategic Leadership</h3>
+                    <p class="text-gray-600 text-sm">School Administration, Crisis Management, Staff Development & Budgeting.</p>
+                </div>
+                <div class="p-6 rounded-xl bg-gray-50 hover:bg-gray-100 transition-colors duration-300">
+                    <div class="w-14 h-14 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-navy mb-2">EdTech Innovation</h3>
+                    <p class="text-gray-600 text-sm">Robotics (Lego/NXT), Digital Fabrication, Smart Solutions & LMS.</p>
+                </div>
+                <div class="p-6 rounded-xl bg-gray-50 hover:bg-gray-100 transition-colors duration-300">
+                    <div class="w-14 h-14 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
+                        <i class="fas fa-solar-panel"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-navy mb-2">Sustainability</h3>
+                    <p class="text-gray-600 text-sm">Renewable Energy Concepts, Hybrid Energy Networks & Green Schools.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row gap-12 items-start">
+                <div class="w-full md:w-1/2">
+                    <span class="text-harvard font-bold uppercase tracking-wider text-sm mb-2 block">About Me</span>
+                    <h2 class="text-3xl lg:text-4xl font-serif font-bold text-navy mb-6">Innovating for the Future of Learning</h2>
+                    <div class="space-y-4 text-gray-600 leading-relaxed">
+                        <p>
+                            I am an educator and technologist dedicated to fostering modern, forward-thinking learning environments. Currently based in Cambridge, MA, I am pursuing a <strong>Master's in Education Leadership</strong> at Harvard University.
+                        </p>
+                        <p>
+                            My career spans over a decade, transitioning from hands-on IT instruction and systems architecture to executive school leadership. As a Principal, I've successfully directed operations, spearheaded fundraising, and implemented data-driven improvements.
+                        </p>
+                        <p>
+                            Beyond the classroom, I have served as an ICT Specialist for the <strong>International Committee of the Red Cross (ICRC)</strong>, managing critical infrastructure in high-stakes environments. This unique blend of technical expertise and pedagogical insight allows me to bridge the gap between educational needs and technological solutions.
+                        </p>
+                    </div>
+                    
+                    <div class="mt-8 grid grid-cols-2 gap-4">
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-map-marker-alt text-harvard"></i>
+                            <span class="text-gray-700 font-medium">Cambridge, MA</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-graduation-cap text-harvard"></i>
+                            <span class="text-gray-700 font-medium">Harvard '26</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full md:w-1/2 bg-gray-50 rounded-2xl p-8 border border-gray-100">
+                    <h3 class="text-xl font-bold text-navy mb-6">Technical Skills</h3>
+                    
+                    <div class="mb-4">
+                        <div class="flex justify-between mb-1">
+                            <span class="text-sm font-medium text-gray-700">School Management & Leadership</span>
+                            <span class="text-sm font-medium text-harvard">Expert</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2">
+                            <div class="bg-harvard h-2 rounded-full" style="width: 95%"></div>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <div class="flex justify-between mb-1">
+                            <span class="text-sm font-medium text-gray-700">Network Architecture & Security</span>
+                            <span class="text-sm font-medium text-harvard">Expert</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2">
+                            <div class="bg-navy h-2 rounded-full" style="width: 90%"></div>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <div class="flex justify-between mb-1">
+                            <span class="text-sm font-medium text-gray-700">Programming (C#, SQL, VB.NET)</span>
+                            <span class="text-sm font-medium text-harvard">Advanced</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2">
+                            <div class="bg-gray-400 h-2 rounded-full" style="width: 85%"></div>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <div class="flex justify-between mb-1">
+                            <span class="text-sm font-medium text-gray-700">Robotics & Makerspace</span>
+                            <span class="text-sm font-medium text-harvard">Advanced</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2">
+                            <div class="bg-gray-400 h-2 rounded-full" style="width: 80%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="py-20 bg-gray-50 relative">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <span class="text-harvard font-bold uppercase tracking-wider text-sm">Career Trajectory</span>
+                <h2 class="text-3xl lg:text-4xl font-serif font-bold text-navy mt-2">Professional Experience</h2>
+            </div>
+
+            <div class="relative timeline-line">
+                <!-- Item 1 -->
+                <div class="mb-12 flex flex-col md:flex-row items-center w-full group">
+                    <div class="w-full md:w-1/2 md:pr-12 md:text-right order-2 md:order-1 mt-4 md:mt-0">
+                        <h3 class="text-xl font-bold text-navy group-hover:text-harvard transition-colors">ICT Specialist</h3>
+                        <h4 class="text-md text-gray-600 font-medium">International Committee of the Red Cross (ICRC)</h4>
+                        <p class="text-sm text-gray-400 mb-2">July 2025 - Sept 2025</p>
+                        <p class="text-gray-600 text-sm">
+                            Provided critical technical support and infrastructure management within a high-stakes humanitarian context. Maintained LAN/WAN networks and satellite communications for field operations.
+                        </p>
+                    </div>
+                    <div class="z-20 flex items-center order-1 md:order-2 bg-harvard shadow-xl w-10 h-10 rounded-full border-4 border-white justify-center text-white text-sm">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <div class="w-full md:w-1/2 md:pl-12 order-3 hidden md:block"></div>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="mb-12 flex flex-col md:flex-row items-center w-full group">
+                    <div class="w-full md:w-1/2 md:pr-12 md:text-right order-2 md:order-1 hidden md:block"></div>
+                    <div class="z-20 flex items-center order-1 md:order-2 bg-navy shadow-xl w-10 h-10 rounded-full border-4 border-white justify-center text-white text-sm">
+                        <i class="fas fa-school"></i>
+                    </div>
+                    <div class="w-full md:w-1/2 md:pl-12 order-2 md:order-3 mt-4 md:mt-0">
+                        <h3 class="text-xl font-bold text-navy group-hover:text-harvard transition-colors">School Principal</h3>
+                        <h4 class="text-md text-gray-600 font-medium">Bab Al Silslah Basic Boys School</h4>
+                        <p class="text-sm text-gray-400 mb-2">Sept 2021 - Sept 2025</p>
+                        <p class="text-gray-600 text-sm">
+                            Directed operations and long-term planning for the campus. Spearheaded fundraising initiatives, mentored staff, and analyzed performance data to drive student success.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Item 3 -->
+                <div class="mb-12 flex flex-col md:flex-row items-center w-full group">
+                    <div class="w-full md:w-1/2 md:pr-12 md:text-right order-2 md:order-1 mt-4 md:mt-0">
+                        <h3 class="text-xl font-bold text-navy group-hover:text-harvard transition-colors">IT Officer</h3>
+                        <h4 class="text-md text-gray-600 font-medium">Madrasati Initiative</h4>
+                        <p class="text-sm text-gray-400 mb-2">Sept 2014 - Dec 2020</p>
+                        <p class="text-gray-600 text-sm">
+                            Oversaw IT infrastructure for 36 schools across Jerusalem. Managed Windows Servers, Active Directory, and implemented disaster recovery plans.
+                        </p>
+                    </div>
+                    <div class="z-20 flex items-center order-1 md:order-2 bg-gray-500 shadow-xl w-10 h-10 rounded-full border-4 border-white justify-center text-white text-sm">
+                        <i class="fas fa-network-wired"></i>
+                    </div>
+                    <div class="w-full md:w-1/2 md:pl-12 order-3 hidden md:block"></div>
+                </div>
+
+                 <!-- Item 4 -->
+                 <div class="flex flex-col md:flex-row items-center w-full group">
+                    <div class="w-full md:w-1/2 md:pr-12 md:text-right order-2 md:order-1 hidden md:block"></div>
+                    <div class="z-20 flex items-center order-1 md:order-2 bg-gray-500 shadow-xl w-10 h-10 rounded-full border-4 border-white justify-center text-white text-sm">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                    </div>
+                    <div class="w-full md:w-1/2 md:pl-12 order-2 md:order-3 mt-4 md:mt-0">
+                        <h3 class="text-xl font-bold text-navy group-hover:text-harvard transition-colors">Programmer & IT Teacher</h3>
+                        <h4 class="text-md text-gray-600 font-medium">Jerusalem Directorate of Education</h4>
+                        <p class="text-sm text-gray-400 mb-2">Sept 2012 - Sept 2021</p>
+                        <p class="text-gray-600 text-sm">
+                           Developed administrative applications and taught IT curriculum integrating Robotics and Smart Boards.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <span class="text-harvard font-bold uppercase tracking-wider text-sm">Innovation in Action</span>
+                <h2 class="text-3xl lg:text-4xl font-serif font-bold text-navy mt-2">Key Projects</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div class="bg-white rounded-xl overflow-hidden shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+                    <div class="bg-navy h-2 w-full"></div>
+                    <div class="p-8">
+                        <div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-lg flex items-center justify-center mb-6">
+                            <i class="fas fa-database text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-navy mb-3">School Management Automation</h3>
+                        <p class="text-gray-600 text-sm mb-4 leading-relaxed">
+                            Directed the full-cycle development of a centralized digital ecosystem for Bab Al Silslah School, automating administrative workflows and student records.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2 py-1 bg-gray-100 text-xs text-gray-600 rounded">C#</span>
+                            <span class="px-2 py-1 bg-gray-100 text-xs text-gray-600 rounded">SQL</span>
+                            <span class="px-2 py-1 bg-gray-100 text-xs text-gray-600 rounded">Workflow</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="bg-white rounded-xl overflow-hidden shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+                    <div class="bg-green-600 h-2 w-full"></div>
+                    <div class="p-8">
+                        <div class="w-12 h-12 bg-green-50 text-green-600 rounded-lg flex items-center justify-center mb-6">
+                            <i class="fas fa-leaf text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-navy mb-3">Climate Education Program</h3>
+                        <p class="text-gray-600 text-sm mb-4 leading-relaxed">
+                            Designed a two-year interdisciplinary sustainability curriculum for 7th-grade students, integrating climate science with hands-on project-based learning.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2 py-1 bg-gray-100 text-xs text-gray-600 rounded">Curriculum Design</span>
+                            <span class="px-2 py-1 bg-gray-100 text-xs text-gray-600 rounded">Sustainability</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="bg-white rounded-xl overflow-hidden shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+                    <div class="bg-harvard h-2 w-full"></div>
+                    <div class="p-8">
+                        <div class="w-12 h-12 bg-red-50 text-harvard rounded-lg flex items-center justify-center mb-6">
+                            <i class="fas fa-calendar-check text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-navy mb-3">Workforce Scheduling Algorithm</h3>
+                        <p class="text-gray-600 text-sm mb-4 leading-relaxed">
+                            Developed a custom algorithm-based scheduling system for Amal Elderly Hospital to optimize staff shifts and ensure 24/7 operational coverage.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2 py-1 bg-gray-100 text-xs text-gray-600 rounded">Algorithms</span>
+                            <span class="px-2 py-1 bg-gray-100 text-xs text-gray-600 rounded">Logistics</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="py-20 bg-gray-900 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row gap-16">
+                <div class="lg:w-1/3">
+                    <h2 class="text-3xl lg:text-4xl font-serif font-bold mb-6">Academic Background</h2>
+                    <p class="text-gray-400 leading-relaxed mb-8">
+                        My academic journey reflects a commitment to lifelong learning, moving from technical foundations in IT to specialized knowledge in renewable energy, and culminating in advanced educational leadership at Harvard.
+                    </p>
+                    <a href="#contact" class="text-harvard font-bold hover:text-white transition-colors inline-flex items-center">
+                        Request Full Resume <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+                
+                <div class="lg:w-2/3 space-y-8">
+                    <div class="flex gap-4">
+                        <div class="flex-shrink-0 w-12 pt-1 text-harvard text-lg">2026</div>
+                        <div>
+                            <h3 class="text-xl font-bold">Master's in Education Leadership</h3>
+                            <p class="text-gray-400">Harvard Graduate School of Education | Cambridge, MA</p>
+                            <p class="text-sm text-gray-500 mt-1">Focus: Organizations and Entrepreneurship</p>
+                        </div>
+                    </div>
+                    
+                    <div class="w-full h-px bg-gray-800"></div>
+
+                    <div class="flex gap-4">
+                        <div class="flex-shrink-0 w-12 pt-1 text-gray-500 text-lg">2021</div>
+                        <div>
+                            <h3 class="text-xl font-bold">Master's in Renewable Energy and Sustainability</h3>
+                            <p class="text-gray-400">Polytechnic University | Jerusalem</p>
+                        </div>
+                    </div>
+
+                    <div class="w-full h-px bg-gray-800"></div>
+
+                    <div class="flex gap-4">
+                        <div class="flex-shrink-0 w-12 pt-1 text-gray-500 text-lg">2015</div>
+                        <div>
+                            <h3 class="text-xl font-bold">High Diploma in Education</h3>
+                            <p class="text-gray-400">Bethlehem University | Bethlehem</p>
+                        </div>
+                    </div>
+                    
+                    <div class="w-full h-px bg-gray-800"></div>
+
+                    <div class="flex gap-4">
+                        <div class="flex-shrink-0 w-12 pt-1 text-gray-500 text-lg">2012</div>
+                        <div>
+                            <h3 class="text-xl font-bold">Bachelor's in Information Technology</h3>
+                            <p class="text-gray-400">Al-Ahliya University | Bethlehem</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-white">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl lg:text-4xl font-serif font-bold text-navy mb-8">Let's Build the Future of Education</h2>
+            <p class="text-gray-600 mb-12">
+                I am currently based in Cambridge, MA, and always open to discussing educational innovation, sustainability, and leadership opportunities.
+            </p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+                <a href="mailto:mafe504@gmail.com" class="p-6 border border-gray-200 rounded-xl hover:border-harvard hover:shadow-lg transition-all group">
+                    <i class="fas fa-envelope text-3xl text-gray-400 group-hover:text-harvard mb-4 transition-colors"></i>
+                    <h3 class="font-bold text-navy mb-1">Email Me</h3>
+                    <p class="text-gray-500">mafe504@gmail.com</p>
+                </a>
+                
+                <a href="tel:+16172308800" class="p-6 border border-gray-200 rounded-xl hover:border-harvard hover:shadow-lg transition-all group">
+                    <i class="fas fa-phone text-3xl text-gray-400 group-hover:text-harvard mb-4 transition-colors"></i>
+                    <h3 class="font-bold text-navy mb-1">Call Me</h3>
+                    <p class="text-gray-500">+1 617 230 8800</p>
+                </a>
+            </div>
+
+            <div class="flex justify-center space-x-8">
+                <a href="https://linkedin.com/in/mhadeed" class="text-gray-400 hover:text-blue-700 transition-colors">
+                    <span class="sr-only">LinkedIn</span>
+                    <i class="fab fa-linkedin text-3xl"></i>
+                </a>
+                <a href="https://github.com/mafe504" class="text-gray-400 hover:text-gray-900 transition-colors">
+                    <span class="sr-only">GitHub</span>
+                    <i class="fab fa-github text-3xl"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-50 border-t border-gray-200 py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center">
+            <p class="text-gray-500 text-sm mb-4 md:mb-0">
+                &copy; 2026 Musa Awad Abu Hadeed. All rights reserved.
+            </p>
+            <p class="text-gray-400 text-sm flex items-center">
+                <span class="mr-2">Cambridge, MA</span>
+                <i class="fas fa-flag-usa"></i>
+            </p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Mobile Menu Toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu on link click
+        menu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.add('hidden');
+            });
+        });
+
+        // Navbar Scroll Effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 10) {
+                navbar.classList.add('shadow-md');
+            } else {
+                navbar.classList.remove('shadow-md');
+            }
+        });
+    </script>
+</body>
+</html>
