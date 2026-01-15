@@ -12,11 +12,15 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 
     <script>
         tailwind.config = {
+            darkMode: 'class',
             theme: {
                 extend: {
                     colors: {
@@ -27,11 +31,20 @@
                         navy: {
                             DEFAULT: '#0F1F3D',
                             light: '#1e3a8a',
+                        },
+                        slate: {
+                            850: '#151f32',
+                            900: '#0f172a',
+                            950: '#020617',
                         }
                     },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
-                        serif: ['Merriweather', 'serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    boxShadow: {
+                        'soft': '0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03)',
+                        'card': '0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.025)',
                     }
                 }
             }
@@ -40,53 +53,94 @@
     <style>
         /* Custom Styles */
         .hero-pattern {
-            background-color: #f9fafb;
-            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23e5e7eb' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            background-color: #ffffff;
+            background-image: linear-gradient(#f3f4f6 1px, transparent 1px), linear-gradient(90deg, #f3f4f6 1px, transparent 1px);
+            background-size: 40px 40px;
         }
+        
+        /* Dark mode overrides for pattern */
+        .dark .hero-pattern {
+            background-color: #0f172a;
+            background-image: linear-gradient(#1e293b 1px, transparent 1px), linear-gradient(90deg, #1e293b 1px, transparent 1px);
+        }
+
         .timeline-line::before {
             content: '';
             position: absolute;
             top: 0;
             bottom: 0;
             left: 20px;
-            width: 2px;
-            background: #e5e7eb;
+            width: 1px;
+            background: #d1d5db;
             z-index: 0;
         }
+        
+        .dark .timeline-line::before {
+            background: #334155;
+        }
+
         @media (min-width: 768px) {
             .timeline-line::before {
                 left: 50%;
-                margin-left: -1px;
+                margin-left: -0.5px;
             }
+        }
+        
+        /* Smooth mobile menu transition */
+        #mobile-menu {
+            transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+        }
+        #mobile-menu.open {
+            max-height: 400px;
+            opacity: 1;
+        }
+
+        /* Global smooth transition for colors */
+        body, div, nav, a, p, h1, h2, h3, span, i, button {
+            transition-property: background-color, border-color, color;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            transition-duration: 300ms;
         }
     </style>
 </head>
-<body class="font-sans text-slate-800 bg-white antialiased">
+<body class="font-sans text-slate-800 dark:text-gray-300 bg-white dark:bg-slate-900 antialiased overflow-x-hidden">
 
     <!-- Navigation -->
-    <nav class="fixed w-full z-50 bg-white/95 backdrop-blur-sm border-b border-gray-200 transition-all duration-300" id="navbar">
+    <nav class="fixed w-full z-50 bg-white/95 dark:bg-slate-900/95 backdrop-blur-sm border-b border-gray-200 dark:border-slate-800 transition-all duration-300" id="navbar">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-20 items-center">
-                <div class="flex-shrink-0 flex items-center">
-                    <a href="#" class="font-serif text-2xl font-bold text-navy tracking-tight">
+                <div class="flex-shrink-0 flex items-center" data-aos="fade-right">
+                    <a href="#" class="font-serif text-2xl font-bold text-navy dark:text-white tracking-tight">
                         Musa <span class="text-harvard">Abu Hadeed</span>
                     </a>
                 </div>
                 
                 <!-- Desktop Menu -->
-                <div class="hidden md:flex space-x-8 items-center">
-                    <a href="#about" class="text-gray-600 hover:text-harvard font-medium transition-colors">About</a>
-                    <a href="#experience" class="text-gray-600 hover:text-harvard font-medium transition-colors">Experience</a>
-                    <a href="#projects" class="text-gray-600 hover:text-harvard font-medium transition-colors">Projects</a>
-                    <a href="#education" class="text-gray-600 hover:text-harvard font-medium transition-colors">Education</a>
-                    <a href="#contact" class="px-5 py-2.5 bg-harvard hover:bg-harvard-dark text-white rounded-md font-medium transition-colors shadow-sm">
-                        Contact Me
+                <div class="hidden md:flex space-x-10 items-center" data-aos="fade-left">
+                    <a href="#about" class="text-gray-600 dark:text-gray-300 hover:text-navy dark:hover:text-white font-medium transition-colors text-sm uppercase tracking-wide">About</a>
+                    <a href="#experience" class="text-gray-600 dark:text-gray-300 hover:text-navy dark:hover:text-white font-medium transition-colors text-sm uppercase tracking-wide">Experience</a>
+                    <a href="#projects" class="text-gray-600 dark:text-gray-300 hover:text-navy dark:hover:text-white font-medium transition-colors text-sm uppercase tracking-wide">Projects</a>
+                    <a href="#education" class="text-gray-600 dark:text-gray-300 hover:text-navy dark:hover:text-white font-medium transition-colors text-sm uppercase tracking-wide">Education</a>
+                    
+                    <!-- Theme Toggle Button -->
+                    <button id="theme-toggle" class="text-gray-500 hover:text-navy dark:text-gray-400 dark:hover:text-white transition-colors focus:outline-none p-2" aria-label="Toggle Dark Mode">
+                        <i class="fas fa-moon text-lg" id="theme-icon"></i>
+                    </button>
+
+                    <a href="#contact" class="px-6 py-2 bg-navy hover:bg-harvard text-white text-sm font-semibold uppercase tracking-wider rounded transition-colors shadow-sm">
+                        Contact
                     </a>
                 </div>
 
                 <!-- Mobile Menu Button -->
-                <div class="md:hidden flex items-center">
-                    <button id="mobile-menu-btn" class="text-gray-600 hover:text-harvard focus:outline-none">
+                <div class="md:hidden flex items-center gap-4">
+                    <button id="mobile-theme-toggle-header" class="text-gray-600 hover:text-navy dark:text-gray-300 focus:outline-none p-2">
+                         <i class="fas fa-moon text-xl" id="mobile-theme-icon-header"></i>
+                    </button>
+                    <button id="mobile-menu-btn" class="text-gray-600 hover:text-navy dark:text-gray-300 focus:outline-none p-2 rounded-md transition-colors">
                         <i class="fas fa-bars text-2xl"></i>
                     </button>
                 </div>
@@ -94,13 +148,13 @@
         </div>
 
         <!-- Mobile Menu Panel -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 absolute w-full shadow-lg">
-            <div class="px-4 pt-2 pb-6 space-y-2">
-                <a href="#about" class="block px-3 py-3 text-base font-medium text-gray-700 hover:text-harvard hover:bg-gray-50 rounded-md">About</a>
-                <a href="#experience" class="block px-3 py-3 text-base font-medium text-gray-700 hover:text-harvard hover:bg-gray-50 rounded-md">Experience</a>
-                <a href="#projects" class="block px-3 py-3 text-base font-medium text-gray-700 hover:text-harvard hover:bg-gray-50 rounded-md">Projects</a>
-                <a href="#education" class="block px-3 py-3 text-base font-medium text-gray-700 hover:text-harvard hover:bg-gray-50 rounded-md">Education</a>
-                <a href="#contact" class="block px-3 py-3 text-base font-medium text-harvard font-semibold hover:bg-gray-50 rounded-md">Contact Me</a>
+        <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-slate-900 border-t border-gray-200 dark:border-slate-800 shadow-xl">
+            <div class="px-4 pt-4 pb-6 space-y-3">
+                <a href="#about" class="block px-4 py-3 text-sm font-semibold text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-slate-800 rounded transition-colors uppercase tracking-wide">About</a>
+                <a href="#experience" class="block px-4 py-3 text-sm font-semibold text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-slate-800 rounded transition-colors uppercase tracking-wide">Experience</a>
+                <a href="#projects" class="block px-4 py-3 text-sm font-semibold text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-slate-800 rounded transition-colors uppercase tracking-wide">Projects</a>
+                <a href="#education" class="block px-4 py-3 text-sm font-semibold text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-slate-800 rounded transition-colors uppercase tracking-wide">Education</a>
+                <a href="#contact" class="block px-4 py-3 text-sm font-semibold text-white bg-navy rounded text-center shadow-sm mt-4 uppercase tracking-wide">Contact</a>
             </div>
         </div>
     </nav>
@@ -108,41 +162,41 @@
     <!-- Hero Section -->
     <header class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 hero-pattern overflow-hidden" id="home">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="flex flex-col-reverse lg:flex-row items-center gap-12 lg:gap-20">
-                <div class="w-full lg:w-3/5 text-center lg:text-left animate-fade-in-up">
-                    <div class="inline-flex items-center px-3 py-1 rounded-full bg-blue-50 text-navy text-sm font-semibold mb-6 border border-blue-100">
-                        <i class="fas fa-university mr-2"></i> Harvard Graduate Student '26
+            <div class="flex flex-col-reverse lg:flex-row items-center gap-12 lg:gap-24">
+                <div class="w-full lg:w-3/5 text-center lg:text-left">
+                    <div data-aos="fade-up" data-aos-delay="100" class="inline-flex items-center px-3 py-1 rounded bg-gray-100 dark:bg-slate-800 text-navy dark:text-gray-200 text-xs font-bold mb-6 border border-gray-200 dark:border-slate-700 uppercase tracking-widest">
+                        <span class="w-2 h-2 rounded-full bg-harvard mr-2"></span> Harvard Graduate Student '26
                     </div>
-                    <h1 class="text-4xl lg:text-6xl font-serif font-bold text-navy mb-6 leading-tight">
+                    <h1 data-aos="fade-up" data-aos-delay="200" class="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold text-navy dark:text-white mb-6 leading-tight">
                         Bridging Pedagogy, <br>
-                        <span class="text-harvard">Technology</span> & Leadership.
+                        Technology & Leadership.
                     </h1>
-                    <p class="text-lg text-gray-600 mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                    <p data-aos="fade-up" data-aos-delay="300" class="text-lg text-gray-600 dark:text-gray-400 mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
                         Forward-thinking School Principal and EdTech Leader with over 12 years of experience transforming educational environments through digital innovation, renewable energy, and strategic leadership.
                     </p>
-                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                        <a href="#contact" class="px-8 py-3.5 bg-harvard hover:bg-harvard-dark text-white rounded-md font-semibold transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5 text-center">
+                    <div data-aos="fade-up" data-aos-delay="400" class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                        <a href="#contact" class="px-8 py-3 bg-navy hover:bg-harvard dark:bg-white dark:text-navy dark:hover:bg-gray-200 text-white rounded text-sm font-bold uppercase tracking-widest transition-all shadow-soft text-center">
                             Get in Touch
                         </a>
-                        <a href="#projects" class="px-8 py-3.5 bg-white text-navy border border-gray-300 hover:border-navy hover:text-harvard rounded-md font-semibold transition-all shadow-sm hover:shadow-md text-center">
+                        <a href="#projects" class="px-8 py-3 bg-transparent text-navy dark:text-white border border-gray-300 dark:border-gray-500 hover:border-navy dark:hover:border-white rounded text-sm font-bold uppercase tracking-widest transition-all text-center">
                             View Portfolio
                         </a>
                     </div>
                     
-                    <div class="mt-10 flex items-center justify-center lg:justify-start space-x-6 text-gray-500">
-                        <a href="https://linkedin.com/in/mhadeed" target="_blank" class="hover:text-blue-600 transition-colors text-2xl"><i class="fab fa-linkedin"></i></a>
-                        <a href="mailto:mafe504@gmail.com" class="hover:text-red-500 transition-colors text-2xl"><i class="fas fa-envelope"></i></a>
-                        <a href="https://github.com/mafe504" target="_blank" class="hover:text-gray-900 transition-colors text-2xl"><i class="fab fa-github"></i></a>
+                    <div data-aos="fade-up" data-aos-delay="500" class="mt-12 flex items-center justify-center lg:justify-start space-x-8 text-gray-500 dark:text-gray-500">
+                        <a href="https://linkedin.com/in/mhadeed" target="_blank" class="hover:text-navy dark:hover:text-white transition-colors"><i class="fab fa-linkedin text-2xl"></i></a>
+                        <a href="mailto:mafe504@gmail.com" class="hover:text-navy dark:hover:text-white transition-colors"><i class="fas fa-envelope text-2xl"></i></a>
+                        <a href="https://github.com/mafe504" target="_blank" class="hover:text-navy dark:hover:text-white transition-colors"><i class="fab fa-github text-2xl"></i></a>
                     </div>
                 </div>
                 
-                <div class="w-full lg:w-2/5 flex justify-center lg:justify-end">
+                <div class="w-full lg:w-2/5 flex justify-center lg:justify-end" data-aos="fade-left" data-aos-duration="800">
                     <div class="relative w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96">
-                        <div class="absolute inset-0 bg-harvard rounded-2xl transform rotate-6 opacity-20"></div>
-                        <div class="absolute inset-0 bg-navy rounded-2xl transform -rotate-6 opacity-20"></div>
+                        <!-- Clean, sharp border for business look -->
+                        <div class="absolute inset-0 bg-gray-200 dark:bg-slate-700 transform translate-x-4 translate-y-4 rounded-sm"></div>
                         <img src="https://raw.githubusercontent.com/mafe504/resume/main/539962601_1137691368412008_8476428806153331712_n.jpg" 
                              alt="Musa Awad Abu Hadeed" 
-                             class="relative w-full h-full object-cover rounded-2xl shadow-2xl border-4 border-white"
+                             class="relative w-full h-full object-cover shadow-lg border-2 border-white dark:border-slate-800 rounded-sm filter grayscale hover:grayscale-0 transition-all duration-500"
                              onerror="this.src='https://ui-avatars.com/api/?name=Musa+Abu+Hadeed&background=0F1F3D&color=fff&size=512'">
                     </div>
                 </div>
@@ -151,42 +205,45 @@
     </header>
 
     <!-- Core Competencies -->
-    <section class="py-16 bg-white border-b border-gray-100">
+    <section class="py-20 bg-white dark:bg-slate-900 border-b border-gray-100 dark:border-slate-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-                <div class="p-6 rounded-xl bg-gray-50 hover:bg-gray-100 transition-colors duration-300">
-                    <div class="w-14 h-14 bg-red-100 text-harvard rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
+                <!-- Card 1 -->
+                <div class="p-8 border-l-4 border-harvard bg-gray-50 dark:bg-slate-800/50 hover:bg-white dark:hover:bg-slate-800 shadow-sm hover:shadow-card transition-all duration-300 text-left" data-aos="fade-up" data-aos-delay="0">
+                    <div class="text-harvard dark:text-red-400 mb-4 text-2xl">
                         <i class="fas fa-chess-knight"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-navy mb-2">Strategic Leadership</h3>
-                    <p class="text-gray-600 text-sm">School Administration, Crisis Management, Staff Development & Budgeting.</p>
+                    <h3 class="text-lg font-bold text-navy dark:text-white mb-2 font-serif">Strategic Leadership</h3>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">School Administration, Crisis Management, Staff Development & Budgeting.</p>
                 </div>
-                <div class="p-6 rounded-xl bg-gray-50 hover:bg-gray-100 transition-colors duration-300">
-                    <div class="w-14 h-14 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
+                <!-- Card 2 -->
+                <div class="p-8 border-l-4 border-navy bg-gray-50 dark:bg-slate-800/50 hover:bg-white dark:hover:bg-slate-800 shadow-sm hover:shadow-card transition-all duration-300 text-left" data-aos="fade-up" data-aos-delay="100">
+                    <div class="text-navy dark:text-blue-400 mb-4 text-2xl">
                         <i class="fas fa-laptop-code"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-navy mb-2">EdTech Innovation</h3>
-                    <p class="text-gray-600 text-sm">Robotics (Lego/NXT), Digital Fabrication, Smart Solutions & LMS.</p>
+                    <h3 class="text-lg font-bold text-navy dark:text-white mb-2 font-serif">EdTech Innovation</h3>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">Robotics (Lego/NXT), Digital Fabrication, Smart Solutions & LMS.</p>
                 </div>
-                <div class="p-6 rounded-xl bg-gray-50 hover:bg-gray-100 transition-colors duration-300">
-                    <div class="w-14 h-14 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
+                <!-- Card 3 -->
+                <div class="p-8 border-l-4 border-gray-500 bg-gray-50 dark:bg-slate-800/50 hover:bg-white dark:hover:bg-slate-800 shadow-sm hover:shadow-card transition-all duration-300 text-left" data-aos="fade-up" data-aos-delay="200">
+                    <div class="text-gray-600 dark:text-green-400 mb-4 text-2xl">
                         <i class="fas fa-solar-panel"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-navy mb-2">Sustainability</h3>
-                    <p class="text-gray-600 text-sm">Renewable Energy Concepts, Hybrid Energy Networks & Green Schools.</p>
+                    <h3 class="text-lg font-bold text-navy dark:text-white mb-2 font-serif">Sustainability</h3>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">Renewable Energy Concepts, Hybrid Energy Networks & Green Schools.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- About Section -->
-    <section id="about" class="py-20 bg-white">
+    <section id="about" class="py-24 bg-white dark:bg-slate-900">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row gap-12 items-start">
-                <div class="w-full md:w-1/2">
-                    <span class="text-harvard font-bold uppercase tracking-wider text-sm mb-2 block">About Me</span>
-                    <h2 class="text-3xl lg:text-4xl font-serif font-bold text-navy mb-6">Innovating for the Future of Learning</h2>
-                    <div class="space-y-4 text-gray-600 leading-relaxed">
+            <div class="flex flex-col md:flex-row gap-16 items-start">
+                <div class="w-full md:w-1/2" data-aos="fade-right">
+                    <span class="text-harvard font-bold uppercase tracking-widest text-xs mb-4 block">About Me</span>
+                    <h2 class="text-3xl lg:text-4xl font-serif font-bold text-navy dark:text-white mb-8">Innovating for the Future of Learning</h2>
+                    <div class="space-y-6 text-gray-600 dark:text-gray-300 leading-relaxed">
                         <p>
                             I am an educator and technologist dedicated to fostering modern, forward-thinking learning environments. Currently based in Cambridge, MA, I am pursuing a <strong>Master's in Education Leadership</strong> at Harvard University.
                         </p>
@@ -198,57 +255,66 @@
                         </p>
                     </div>
                     
-                    <div class="mt-8 grid grid-cols-2 gap-4">
-                        <div class="flex items-center space-x-2">
-                            <i class="fas fa-map-marker-alt text-harvard"></i>
-                            <span class="text-gray-700 font-medium">Cambridge, MA</span>
+                    <div class="mt-10 grid grid-cols-2 gap-6">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-10 h-10 rounded-full bg-gray-100 dark:bg-slate-800 flex items-center justify-center text-harvard dark:text-red-400">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs text-gray-500 dark:text-gray-400 font-bold uppercase">Location</p>
+                                <span class="text-navy dark:text-white font-medium">Cambridge, MA</span>
+                            </div>
                         </div>
-                        <div class="flex items-center space-x-2">
-                            <i class="fas fa-graduation-cap text-harvard"></i>
-                            <span class="text-gray-700 font-medium">Harvard '26</span>
+                        <div class="flex items-center space-x-4">
+                            <div class="w-10 h-10 rounded-full bg-gray-100 dark:bg-slate-800 flex items-center justify-center text-harvard dark:text-red-400">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs text-gray-500 dark:text-gray-400 font-bold uppercase">Education</p>
+                                <span class="text-navy dark:text-white font-medium">Harvard '26</span>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="w-full md:w-1/2 bg-gray-50 rounded-2xl p-8 border border-gray-100">
-                    <h3 class="text-xl font-bold text-navy mb-6">Technical Skills</h3>
+                
+                <div class="w-full md:w-1/2 bg-gray-50 dark:bg-slate-850 rounded p-10 border border-gray-100 dark:border-slate-800" data-aos="fade-left">
+                    <h3 class="text-xl font-bold text-navy dark:text-white mb-8 font-serif">Technical Proficiency</h3>
                     
-                    <div class="mb-4">
-                        <div class="flex justify-between mb-1">
-                            <span class="text-sm font-medium text-gray-700">School Management & Leadership</span>
-                            <span class="text-sm font-medium text-harvard">Expert</span>
+                    <div class="space-y-8">
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-sm font-semibold text-gray-700 dark:text-gray-300">School Management & Leadership</span>
+                            </div>
+                            <div class="w-full bg-gray-200 dark:bg-slate-700 h-1">
+                                <div class="bg-harvard dark:bg-red-600 h-1" style="width: 95%"></div>
+                            </div>
                         </div>
-                        <div class="w-full bg-gray-200 rounded-full h-2">
-                            <div class="bg-harvard h-2 rounded-full" style="width: 95%"></div>
-                        </div>
-                    </div>
 
-                    <div class="mb-4">
-                        <div class="flex justify-between mb-1">
-                            <span class="text-sm font-medium text-gray-700">Network Architecture & Security</span>
-                            <span class="text-sm font-medium text-harvard">Expert</span>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-sm font-semibold text-gray-700 dark:text-gray-300">Network Architecture & Security</span>
+                            </div>
+                            <div class="w-full bg-gray-200 dark:bg-slate-700 h-1">
+                                <div class="bg-navy dark:bg-blue-600 h-1" style="width: 90%"></div>
+                            </div>
                         </div>
-                        <div class="w-full bg-gray-200 rounded-full h-2">
-                            <div class="bg-navy h-2 rounded-full" style="width: 90%"></div>
-                        </div>
-                    </div>
 
-                    <div class="mb-4">
-                        <div class="flex justify-between mb-1">
-                            <span class="text-sm font-medium text-gray-700">Programming (C#, SQL, VB.NET)</span>
-                            <span class="text-sm font-medium text-harvard">Advanced</span>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-sm font-semibold text-gray-700 dark:text-gray-300">Programming (C#, SQL, VB.NET)</span>
+                            </div>
+                            <div class="w-full bg-gray-200 dark:bg-slate-700 h-1">
+                                <div class="bg-gray-500 dark:bg-gray-400 h-1" style="width: 85%"></div>
+                            </div>
                         </div>
-                        <div class="w-full bg-gray-200 rounded-full h-2">
-                            <div class="bg-gray-400 h-2 rounded-full" style="width: 85%"></div>
-                        </div>
-                    </div>
 
-                    <div class="mb-4">
-                        <div class="flex justify-between mb-1">
-                            <span class="text-sm font-medium text-gray-700">Robotics & Makerspace</span>
-                            <span class="text-sm font-medium text-harvard">Advanced</span>
-                        </div>
-                        <div class="w-full bg-gray-200 rounded-full h-2">
-                            <div class="bg-gray-400 h-2 rounded-full" style="width: 80%"></div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-sm font-semibold text-gray-700 dark:text-gray-300">Robotics & Makerspace</span>
+                            </div>
+                            <div class="w-full bg-gray-200 dark:bg-slate-700 h-1">
+                                <div class="bg-gray-500 dark:bg-gray-400 h-1" style="width: 80%"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -257,75 +323,95 @@
     </section>
 
     <!-- Experience Section -->
-    <section id="experience" class="py-20 bg-gray-50 relative">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <span class="text-harvard font-bold uppercase tracking-wider text-sm">Career Trajectory</span>
-                <h2 class="text-3xl lg:text-4xl font-serif font-bold text-navy mt-2">Professional Experience</h2>
+    <section id="experience" class="py-24 bg-gray-50 dark:bg-slate-950 relative overflow-hidden">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-20" data-aos="fade-up">
+                <span class="text-harvard font-bold uppercase tracking-widest text-xs">Career Trajectory</span>
+                <h2 class="text-3xl lg:text-4xl font-serif font-bold text-navy dark:text-white mt-2">Professional Experience</h2>
             </div>
 
             <div class="relative timeline-line">
                 <!-- Item 1 -->
-                <div class="mb-12 flex flex-col md:flex-row items-center w-full group">
-                    <div class="w-full md:w-1/2 md:pr-12 md:text-right order-2 md:order-1 mt-4 md:mt-0">
-                        <h3 class="text-xl font-bold text-navy group-hover:text-harvard transition-colors">ICT Specialist</h3>
-                        <h4 class="text-md text-gray-600 font-medium">International Committee of the Red Cross (ICRC)</h4>
-                        <p class="text-sm text-gray-400 mb-2">July 2025 - Sept 2025</p>
-                        <p class="text-gray-600 text-sm">
-                            Provided critical technical support and infrastructure management within a high-stakes humanitarian context. Maintained LAN/WAN networks and satellite communications for field operations.
-                        </p>
+                <div class="mb-16 flex flex-col md:flex-row items-center w-full group" data-aos="fade-up">
+                    <div class="w-full md:w-1/2 md:pr-12 md:text-right order-2 md:order-1 mt-6 md:mt-0">
+                        <div class="bg-white dark:bg-slate-900 p-8 shadow-sm hover:shadow-md transition-all border border-gray-200 dark:border-slate-800 rounded-sm relative">
+                            <div class="absolute top-0 right-0 left-0 h-1 bg-harvard"></div>
+                            <h3 class="text-lg font-bold text-navy dark:text-white">ICT Specialist</h3>
+                            <h4 class="text-sm text-gray-500 dark:text-gray-400 font-medium uppercase tracking-wide mt-1">International Committee of the Red Cross</h4>
+                            <div class="text-xs text-gray-400 mt-2 mb-4 font-mono">
+                                July 2025 - Sept 2025
+                            </div>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+                                Provided critical technical support and infrastructure management within a high-stakes humanitarian context. Maintained LAN/WAN networks and satellite communications for field operations.
+                            </p>
+                        </div>
                     </div>
-                    <div class="z-20 flex items-center order-1 md:order-2 bg-harvard shadow-xl w-10 h-10 rounded-full border-4 border-white justify-center text-white text-sm">
-                        <i class="fas fa-globe"></i>
+                    <div class="z-20 flex items-center order-1 md:order-2 bg-white dark:bg-slate-800 shadow-sm w-8 h-8 rounded-full border-2 border-harvard dark:border-red-500 justify-center">
+                        <div class="w-2 h-2 bg-harvard dark:bg-red-500 rounded-full"></div>
                     </div>
                     <div class="w-full md:w-1/2 md:pl-12 order-3 hidden md:block"></div>
                 </div>
 
                 <!-- Item 2 -->
-                <div class="mb-12 flex flex-col md:flex-row items-center w-full group">
+                <div class="mb-16 flex flex-col md:flex-row items-center w-full group" data-aos="fade-up">
                     <div class="w-full md:w-1/2 md:pr-12 md:text-right order-2 md:order-1 hidden md:block"></div>
-                    <div class="z-20 flex items-center order-1 md:order-2 bg-navy shadow-xl w-10 h-10 rounded-full border-4 border-white justify-center text-white text-sm">
-                        <i class="fas fa-school"></i>
+                    <div class="z-20 flex items-center order-1 md:order-2 bg-white dark:bg-slate-800 shadow-sm w-8 h-8 rounded-full border-2 border-navy dark:border-blue-500 justify-center">
+                         <div class="w-2 h-2 bg-navy dark:bg-blue-500 rounded-full"></div>
                     </div>
-                    <div class="w-full md:w-1/2 md:pl-12 order-2 md:order-3 mt-4 md:mt-0">
-                        <h3 class="text-xl font-bold text-navy group-hover:text-harvard transition-colors">School Principal</h3>
-                        <h4 class="text-md text-gray-600 font-medium">Bab Al Silslah Basic Boys School</h4>
-                        <p class="text-sm text-gray-400 mb-2">Sept 2021 - Sept 2025</p>
-                        <p class="text-gray-600 text-sm">
-                            Directed operations and long-term planning for the campus. Spearheaded fundraising initiatives, mentored staff, and analyzed performance data to drive student success.
-                        </p>
+                    <div class="w-full md:w-1/2 md:pl-12 order-2 md:order-3 mt-6 md:mt-0">
+                        <div class="bg-white dark:bg-slate-900 p-8 shadow-sm hover:shadow-md transition-all border border-gray-200 dark:border-slate-800 rounded-sm relative">
+                             <div class="absolute top-0 right-0 left-0 h-1 bg-navy"></div>
+                            <h3 class="text-lg font-bold text-navy dark:text-white">School Principal</h3>
+                            <h4 class="text-sm text-gray-500 dark:text-gray-400 font-medium uppercase tracking-wide mt-1">Bab Al Silslah Basic Boys School</h4>
+                            <div class="text-xs text-gray-400 mt-2 mb-4 font-mono">
+                                Sept 2021 - Sept 2025
+                            </div>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+                                Directed operations and long-term planning. Spearheaded fundraising initiatives, mentored staff, and analyzed performance data to drive student success.
+                            </p>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Item 3 -->
-                <div class="mb-12 flex flex-col md:flex-row items-center w-full group">
-                    <div class="w-full md:w-1/2 md:pr-12 md:text-right order-2 md:order-1 mt-4 md:mt-0">
-                        <h3 class="text-xl font-bold text-navy group-hover:text-harvard transition-colors">IT Officer</h3>
-                        <h4 class="text-md text-gray-600 font-medium">Madrasati Initiative</h4>
-                        <p class="text-sm text-gray-400 mb-2">Sept 2014 - Dec 2020</p>
-                        <p class="text-gray-600 text-sm">
-                            Oversaw IT infrastructure for 36 schools across Jerusalem. Managed Windows Servers, Active Directory, and implemented disaster recovery plans.
-                        </p>
+                <div class="mb-16 flex flex-col md:flex-row items-center w-full group" data-aos="fade-up">
+                    <div class="w-full md:w-1/2 md:pr-12 md:text-right order-2 md:order-1 mt-6 md:mt-0">
+                        <div class="bg-white dark:bg-slate-900 p-8 shadow-sm hover:shadow-md transition-all border border-gray-200 dark:border-slate-800 rounded-sm relative">
+                             <div class="absolute top-0 right-0 left-0 h-1 bg-gray-400"></div>
+                            <h3 class="text-lg font-bold text-navy dark:text-white">IT Officer</h3>
+                            <h4 class="text-sm text-gray-500 dark:text-gray-400 font-medium uppercase tracking-wide mt-1">Madrasati Initiative</h4>
+                            <div class="text-xs text-gray-400 mt-2 mb-4 font-mono">
+                                Sept 2014 - Dec 2020
+                            </div>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+                                Oversaw IT infrastructure for 36 schools across Jerusalem. Managed Windows Servers, Active Directory, and implemented disaster recovery plans.
+                            </p>
+                        </div>
                     </div>
-                    <div class="z-20 flex items-center order-1 md:order-2 bg-gray-500 shadow-xl w-10 h-10 rounded-full border-4 border-white justify-center text-white text-sm">
-                        <i class="fas fa-network-wired"></i>
+                    <div class="z-20 flex items-center order-1 md:order-2 bg-white dark:bg-slate-800 shadow-sm w-8 h-8 rounded-full border-2 border-gray-400 dark:border-gray-500 justify-center">
+                        <div class="w-2 h-2 bg-gray-400 dark:bg-gray-500 rounded-full"></div>
                     </div>
                     <div class="w-full md:w-1/2 md:pl-12 order-3 hidden md:block"></div>
                 </div>
 
                  <!-- Item 4 -->
-                 <div class="flex flex-col md:flex-row items-center w-full group">
+                 <div class="flex flex-col md:flex-row items-center w-full group" data-aos="fade-up">
                     <div class="w-full md:w-1/2 md:pr-12 md:text-right order-2 md:order-1 hidden md:block"></div>
-                    <div class="z-20 flex items-center order-1 md:order-2 bg-gray-500 shadow-xl w-10 h-10 rounded-full border-4 border-white justify-center text-white text-sm">
-                        <i class="fas fa-chalkboard-teacher"></i>
+                    <div class="z-20 flex items-center order-1 md:order-2 bg-white dark:bg-slate-800 shadow-sm w-8 h-8 rounded-full border-2 border-gray-400 dark:border-gray-500 justify-center">
+                         <div class="w-2 h-2 bg-gray-400 dark:bg-gray-500 rounded-full"></div>
                     </div>
-                    <div class="w-full md:w-1/2 md:pl-12 order-2 md:order-3 mt-4 md:mt-0">
-                        <h3 class="text-xl font-bold text-navy group-hover:text-harvard transition-colors">Programmer & IT Teacher</h3>
-                        <h4 class="text-md text-gray-600 font-medium">Jerusalem Directorate of Education</h4>
-                        <p class="text-sm text-gray-400 mb-2">Sept 2012 - Sept 2021</p>
-                        <p class="text-gray-600 text-sm">
-                           Developed administrative applications and taught IT curriculum integrating Robotics and Smart Boards.
-                        </p>
+                    <div class="w-full md:w-1/2 md:pl-12 order-2 md:order-3 mt-6 md:mt-0">
+                        <div class="bg-white dark:bg-slate-900 p-8 shadow-sm hover:shadow-md transition-all border border-gray-200 dark:border-slate-800 rounded-sm relative">
+                             <div class="absolute top-0 right-0 left-0 h-1 bg-gray-400"></div>
+                            <h3 class="text-lg font-bold text-navy dark:text-white">Programmer & IT Teacher</h3>
+                            <h4 class="text-sm text-gray-500 dark:text-gray-400 font-medium uppercase tracking-wide mt-1">Jerusalem Directorate of Education</h4>
+                            <div class="text-xs text-gray-400 mt-2 mb-4 font-mono">
+                                Sept 2012 - Sept 2021
+                            </div>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+                               Developed administrative applications and taught IT curriculum integrating Robotics and Smart Boards.
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -333,65 +419,77 @@
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" class="py-20 bg-white">
+    <section id="projects" class="py-24 bg-white dark:bg-slate-900">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <span class="text-harvard font-bold uppercase tracking-wider text-sm">Innovation in Action</span>
-                <h2 class="text-3xl lg:text-4xl font-serif font-bold text-navy mt-2">Key Projects</h2>
+            <div class="text-center mb-16" data-aos="fade-up">
+                <span class="text-harvard font-bold uppercase tracking-widest text-xs">Innovation in Action</span>
+                <h2 class="text-3xl lg:text-4xl font-serif font-bold text-navy dark:text-white mt-2">Key Projects</h2>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Project 1 -->
-                <div class="bg-white rounded-xl overflow-hidden shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300">
-                    <div class="bg-navy h-2 w-full"></div>
-                    <div class="p-8">
-                        <div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-lg flex items-center justify-center mb-6">
-                            <i class="fas fa-database text-xl"></i>
+                <div class="bg-white dark:bg-slate-800 rounded shadow-sm border border-gray-200 dark:border-slate-700 hover:shadow-lg transition-all duration-300 group flex flex-col h-full" data-aos="fade-up" data-aos-delay="0">
+                    <div class="p-8 flex-grow">
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="w-10 h-10 bg-navy/10 dark:bg-blue-500/20 text-navy dark:text-blue-400 rounded flex items-center justify-center text-lg">
+                                <i class="fas fa-database"></i>
+                            </div>
+                            <span class="text-xs font-bold text-navy dark:text-gray-300 bg-gray-100 dark:bg-slate-700 px-2 py-1 rounded">2021-2025</span>
                         </div>
-                        <h3 class="text-xl font-bold text-navy mb-3">School Management Automation</h3>
-                        <p class="text-gray-600 text-sm mb-4 leading-relaxed">
+                        <h3 class="text-lg font-bold text-navy dark:text-white mb-3">School Management Automation</h3>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm mb-6 leading-relaxed">
                             Directed the full-cycle development of a centralized digital ecosystem for Bab Al Silslah School, automating administrative workflows and student records.
                         </p>
+                    </div>
+                    <div class="px-8 pb-8 pt-0 mt-auto">
                         <div class="flex flex-wrap gap-2">
-                            <span class="px-2 py-1 bg-gray-100 text-xs text-gray-600 rounded">C#</span>
-                            <span class="px-2 py-1 bg-gray-100 text-xs text-gray-600 rounded">SQL</span>
-                            <span class="px-2 py-1 bg-gray-100 text-xs text-gray-600 rounded">Workflow</span>
+                            <span class="px-2 py-1 bg-gray-50 dark:bg-slate-700 text-xs font-medium text-gray-600 dark:text-gray-300 border border-gray-200 dark:border-slate-600 rounded-sm">C#</span>
+                            <span class="px-2 py-1 bg-gray-50 dark:bg-slate-700 text-xs font-medium text-gray-600 dark:text-gray-300 border border-gray-200 dark:border-slate-600 rounded-sm">SQL</span>
+                            <span class="px-2 py-1 bg-gray-50 dark:bg-slate-700 text-xs font-medium text-gray-600 dark:text-gray-300 border border-gray-200 dark:border-slate-600 rounded-sm">Workflow</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- Project 2 -->
-                <div class="bg-white rounded-xl overflow-hidden shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300">
-                    <div class="bg-green-600 h-2 w-full"></div>
-                    <div class="p-8">
-                        <div class="w-12 h-12 bg-green-50 text-green-600 rounded-lg flex items-center justify-center mb-6">
-                            <i class="fas fa-leaf text-xl"></i>
+                <div class="bg-white dark:bg-slate-800 rounded shadow-sm border border-gray-200 dark:border-slate-700 hover:shadow-lg transition-all duration-300 group flex flex-col h-full" data-aos="fade-up" data-aos-delay="100">
+                    <div class="p-8 flex-grow">
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="w-10 h-10 bg-green-100 dark:bg-green-500/20 text-green-700 dark:text-green-400 rounded flex items-center justify-center text-lg">
+                                <i class="fas fa-leaf"></i>
+                            </div>
+                            <span class="text-xs font-bold text-navy dark:text-gray-300 bg-gray-100 dark:bg-slate-700 px-2 py-1 rounded">2023</span>
                         </div>
-                        <h3 class="text-xl font-bold text-navy mb-3">Climate Education Program</h3>
-                        <p class="text-gray-600 text-sm mb-4 leading-relaxed">
+                        <h3 class="text-lg font-bold text-navy dark:text-white mb-3">Climate Education Program</h3>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm mb-6 leading-relaxed">
                             Designed a two-year interdisciplinary sustainability curriculum for 7th-grade students, integrating climate science with hands-on project-based learning.
                         </p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="px-2 py-1 bg-gray-100 text-xs text-gray-600 rounded">Curriculum Design</span>
-                            <span class="px-2 py-1 bg-gray-100 text-xs text-gray-600 rounded">Sustainability</span>
+                    </div>
+                    <div class="px-8 pb-8 pt-0 mt-auto">
+                         <div class="flex flex-wrap gap-2">
+                            <span class="px-2 py-1 bg-gray-50 dark:bg-slate-700 text-xs font-medium text-gray-600 dark:text-gray-300 border border-gray-200 dark:border-slate-600 rounded-sm">Curriculum</span>
+                            <span class="px-2 py-1 bg-gray-50 dark:bg-slate-700 text-xs font-medium text-gray-600 dark:text-gray-300 border border-gray-200 dark:border-slate-600 rounded-sm">Sustainability</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- Project 3 -->
-                <div class="bg-white rounded-xl overflow-hidden shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300">
-                    <div class="bg-harvard h-2 w-full"></div>
-                    <div class="p-8">
-                        <div class="w-12 h-12 bg-red-50 text-harvard rounded-lg flex items-center justify-center mb-6">
-                            <i class="fas fa-calendar-check text-xl"></i>
+                <div class="bg-white dark:bg-slate-800 rounded shadow-sm border border-gray-200 dark:border-slate-700 hover:shadow-lg transition-all duration-300 group flex flex-col h-full" data-aos="fade-up" data-aos-delay="200">
+                    <div class="p-8 flex-grow">
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="w-10 h-10 bg-red-100 dark:bg-red-500/20 text-harvard dark:text-red-400 rounded flex items-center justify-center text-lg">
+                                <i class="fas fa-calendar-check"></i>
+                            </div>
+                            <span class="text-xs font-bold text-navy dark:text-gray-300 bg-gray-100 dark:bg-slate-700 px-2 py-1 rounded">2020</span>
                         </div>
-                        <h3 class="text-xl font-bold text-navy mb-3">Workforce Scheduling Algorithm</h3>
-                        <p class="text-gray-600 text-sm mb-4 leading-relaxed">
+                        <h3 class="text-lg font-bold text-navy dark:text-white mb-3">Workforce Scheduling Algo</h3>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm mb-6 leading-relaxed">
                             Developed a custom algorithm-based scheduling system for Amal Elderly Hospital to optimize staff shifts and ensure 24/7 operational coverage.
                         </p>
+                    </div>
+                     <div class="px-8 pb-8 pt-0 mt-auto">
                         <div class="flex flex-wrap gap-2">
-                            <span class="px-2 py-1 bg-gray-100 text-xs text-gray-600 rounded">Algorithms</span>
-                            <span class="px-2 py-1 bg-gray-100 text-xs text-gray-600 rounded">Logistics</span>
+                            <span class="px-2 py-1 bg-gray-50 dark:bg-slate-700 text-xs font-medium text-gray-600 dark:text-gray-300 border border-gray-200 dark:border-slate-600 rounded-sm">Algorithms</span>
+                            <span class="px-2 py-1 bg-gray-50 dark:bg-slate-700 text-xs font-medium text-gray-600 dark:text-gray-300 border border-gray-200 dark:border-slate-600 rounded-sm">Logistics</span>
                         </div>
                     </div>
                 </div>
@@ -400,56 +498,51 @@
     </section>
 
     <!-- Education Section -->
-    <section id="education" class="py-20 bg-gray-900 text-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="education" class="py-24 bg-navy dark:bg-black text-white relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="flex flex-col lg:flex-row gap-16">
-                <div class="lg:w-1/3">
+                <div class="lg:w-1/3" data-aos="fade-right">
+                    <span class="text-harvard font-bold uppercase tracking-widest text-xs mb-4 block">Foundations</span>
                     <h2 class="text-3xl lg:text-4xl font-serif font-bold mb-6">Academic Background</h2>
-                    <p class="text-gray-400 leading-relaxed mb-8">
+                    <p class="text-gray-300 leading-relaxed mb-8 text-lg font-light">
                         My academic journey reflects a commitment to lifelong learning, moving from technical foundations in IT to specialized knowledge in renewable energy, and culminating in advanced educational leadership at Harvard.
                     </p>
-                    <a href="#contact" class="text-harvard font-bold hover:text-white transition-colors inline-flex items-center">
-                        Request Full Resume <i class="fas fa-arrow-right ml-2"></i>
+                    <a href="#contact" class="text-white hover:text-gray-200 font-bold border-b border-white hover:border-gray-200 pb-1 transition-colors inline-flex items-center text-sm uppercase tracking-wide">
+                        Request Full Resume <i class="fas fa-arrow-right ml-2 text-xs"></i>
                     </a>
                 </div>
                 
-                <div class="lg:w-2/3 space-y-8">
-                    <div class="flex gap-4">
-                        <div class="flex-shrink-0 w-12 pt-1 text-harvard text-lg">2026</div>
-                        <div>
-                            <h3 class="text-xl font-bold">Master's in Education Leadership</h3>
-                            <p class="text-gray-400">Harvard Graduate School of Education | Cambridge, MA</p>
-                            <p class="text-sm text-gray-500 mt-1">Focus: Organizations and Entrepreneurship</p>
+                <div class="lg:w-2/3 space-y-12" data-aos="fade-left">
+                    <div class="flex gap-8 group">
+                        <div class="flex-shrink-0 w-16 pt-1 text-harvard text-lg font-bold">2026</div>
+                        <div class="border-l border-gray-700 pl-8">
+                            <h3 class="text-xl font-bold text-white">Master's in Education Leadership</h3>
+                            <p class="text-gray-300 mt-1">Harvard Graduate School of Education | Cambridge, MA</p>
+                            <p class="text-xs text-gray-400 mt-2 uppercase tracking-wide">Focus: Organizations and Entrepreneurship</p>
                         </div>
                     </div>
                     
-                    <div class="w-full h-px bg-gray-800"></div>
-
-                    <div class="flex gap-4">
-                        <div class="flex-shrink-0 w-12 pt-1 text-gray-500 text-lg">2021</div>
-                        <div>
-                            <h3 class="text-xl font-bold">Master's in Renewable Energy and Sustainability</h3>
-                            <p class="text-gray-400">Polytechnic University | Jerusalem</p>
+                    <div class="flex gap-8 group">
+                        <div class="flex-shrink-0 w-16 pt-1 text-gray-500 text-lg font-bold">2021</div>
+                        <div class="border-l border-gray-700 pl-8">
+                            <h3 class="text-lg font-bold text-white">Master's in Renewable Energy & Sustainability</h3>
+                            <p class="text-gray-400 mt-1">Polytechnic University | Jerusalem</p>
                         </div>
                     </div>
 
-                    <div class="w-full h-px bg-gray-800"></div>
-
-                    <div class="flex gap-4">
-                        <div class="flex-shrink-0 w-12 pt-1 text-gray-500 text-lg">2015</div>
-                        <div>
-                            <h3 class="text-xl font-bold">High Diploma in Education</h3>
-                            <p class="text-gray-400">Bethlehem University | Bethlehem</p>
+                    <div class="flex gap-8 group">
+                        <div class="flex-shrink-0 w-16 pt-1 text-gray-500 text-lg font-bold">2015</div>
+                        <div class="border-l border-gray-700 pl-8">
+                            <h3 class="text-lg font-bold text-white">High Diploma in Education</h3>
+                            <p class="text-gray-400 mt-1">Bethlehem University | Bethlehem</p>
                         </div>
                     </div>
                     
-                    <div class="w-full h-px bg-gray-800"></div>
-
-                    <div class="flex gap-4">
-                        <div class="flex-shrink-0 w-12 pt-1 text-gray-500 text-lg">2012</div>
-                        <div>
-                            <h3 class="text-xl font-bold">Bachelor's in Information Technology</h3>
-                            <p class="text-gray-400">Al-Ahliya University | Bethlehem</p>
+                    <div class="flex gap-8 group">
+                        <div class="flex-shrink-0 w-16 pt-1 text-gray-500 text-lg font-bold">2012</div>
+                        <div class="border-l border-gray-700 pl-8">
+                            <h3 class="text-lg font-bold text-white">Bachelor's in Information Technology</h3>
+                            <p class="text-gray-400 mt-1">Al-Ahliya University | Bethlehem</p>
                         </div>
                     </div>
                 </div>
@@ -458,33 +551,29 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-20 bg-white">
-        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-3xl lg:text-4xl font-serif font-bold text-navy mb-8">Let's Build the Future of Education</h2>
-            <p class="text-gray-600 mb-12">
+    <section id="contact" class="py-24 bg-white dark:bg-slate-900">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center" data-aos="fade-up">
+            <h2 class="text-3xl lg:text-4xl font-serif font-bold text-navy dark:text-white mb-8">Let's Build the Future of Education</h2>
+            <p class="text-gray-600 dark:text-gray-400 mb-12 text-lg">
                 I am currently based in Cambridge, MA, and always open to discussing educational innovation, sustainability, and leadership opportunities.
             </p>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-                <a href="mailto:mafe504@gmail.com" class="p-6 border border-gray-200 rounded-xl hover:border-harvard hover:shadow-lg transition-all group">
-                    <i class="fas fa-envelope text-3xl text-gray-400 group-hover:text-harvard mb-4 transition-colors"></i>
-                    <h3 class="font-bold text-navy mb-1">Email Me</h3>
-                    <p class="text-gray-500">mafe504@gmail.com</p>
+            <div class="flex flex-col md:flex-row justify-center gap-6 mb-12">
+                <a href="mailto:mafe504@gmail.com" class="px-8 py-4 bg-navy hover:bg-harvard dark:bg-white dark:text-navy dark:hover:bg-gray-200 text-white rounded font-bold uppercase tracking-widest transition-all shadow-md text-sm">
+                    <i class="fas fa-envelope mr-2"></i> mafe504@gmail.com
                 </a>
                 
-                <a href="tel:+16172308800" class="p-6 border border-gray-200 rounded-xl hover:border-harvard hover:shadow-lg transition-all group">
-                    <i class="fas fa-phone text-3xl text-gray-400 group-hover:text-harvard mb-4 transition-colors"></i>
-                    <h3 class="font-bold text-navy mb-1">Call Me</h3>
-                    <p class="text-gray-500">+1 617 230 8800</p>
+                <a href="tel:+16172308800" class="px-8 py-4 bg-white dark:bg-slate-800 text-navy dark:text-white border border-gray-200 dark:border-slate-700 hover:border-navy hover:text-navy dark:hover:border-white rounded font-bold uppercase tracking-widest transition-all shadow-sm text-sm">
+                     <i class="fas fa-phone mr-2"></i> +1 617 230 8800
                 </a>
             </div>
 
-            <div class="flex justify-center space-x-8">
-                <a href="https://linkedin.com/in/mhadeed" class="text-gray-400 hover:text-blue-700 transition-colors">
+            <div class="flex justify-center space-x-12">
+                <a href="https://linkedin.com/in/mhadeed" class="text-gray-400 hover:text-navy dark:hover:text-white transition-all">
                     <span class="sr-only">LinkedIn</span>
                     <i class="fab fa-linkedin text-3xl"></i>
                 </a>
-                <a href="https://github.com/mafe504" class="text-gray-400 hover:text-gray-900 transition-colors">
+                <a href="https://github.com/mafe504" class="text-gray-400 hover:text-navy dark:hover:text-white transition-all">
                     <span class="sr-only">GitHub</span>
                     <i class="fab fa-github text-3xl"></i>
                 </a>
@@ -493,36 +582,104 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-50 border-t border-gray-200 py-8">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center">
-            <p class="text-gray-500 text-sm mb-4 md:mb-0">
+    <footer class="bg-white dark:bg-slate-950 border-t border-gray-200 dark:border-slate-800 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+            <p class="text-gray-500 text-sm font-medium">
                 &copy; 2026 Musa Awad Abu Hadeed. All rights reserved.
             </p>
-            <p class="text-gray-400 text-sm flex items-center">
-                <span class="mr-2">Cambridge, MA</span>
-                <i class="fas fa-flag-usa"></i>
-            </p>
+            <div class="flex items-center space-x-6">
+                 <p class="text-gray-400 text-sm flex items-center">
+                    <span class="mr-2">Cambridge, MA</span>
+                    <i class="fas fa-flag-usa"></i>
+                </p>
+                <a href="#" class="text-gray-400 hover:text-navy dark:hover:text-white transition-colors text-sm uppercase tracking-wide font-bold">
+                    Back to Top
+                </a>
+            </div>
         </div>
     </footer>
 
     <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // Mobile Menu Toggle
+        // Theme Toggle Logic
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
+        const mobileThemeBtn = document.getElementById('mobile-theme-toggle-header');
+        const mobileThemeIcon = document.getElementById('mobile-theme-icon-header');
+        const html = document.documentElement;
+
+        function updateIcons(isDark) {
+            if (isDark) {
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+                mobileThemeIcon.classList.remove('fa-moon');
+                mobileThemeIcon.classList.add('fa-sun');
+            } else {
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+                mobileThemeIcon.classList.remove('fa-sun');
+                mobileThemeIcon.classList.add('fa-moon');
+            }
+        }
+
+        function initTheme() {
+            if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                html.classList.add('dark');
+                updateIcons(true);
+            } else {
+                html.classList.remove('dark');
+                updateIcons(false);
+            }
+        }
+
+        function toggleTheme() {
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                localStorage.theme = 'light';
+                updateIcons(false);
+            } else {
+                html.classList.add('dark');
+                localStorage.theme = 'dark';
+                updateIcons(true);
+            }
+        }
+
+        themeToggleBtn.addEventListener('click', toggleTheme);
+        mobileThemeBtn.addEventListener('click', toggleTheme);
+        
+        initTheme();
+
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 50,
+            easing: 'ease-out-cubic'
+        });
+
+        // Mobile Menu
         const btn = document.getElementById('mobile-menu-btn');
         const menu = document.getElementById('mobile-menu');
 
         btn.addEventListener('click', () => {
-            menu.classList.toggle('hidden');
+            if (menu.classList.contains('hidden')) {
+                menu.classList.remove('hidden');
+                setTimeout(() => menu.classList.add('open'), 10);
+            } else {
+                menu.classList.remove('open');
+                setTimeout(() => menu.classList.add('hidden'), 300);
+            }
         });
 
-        // Close mobile menu on link click
         menu.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
-                menu.classList.add('hidden');
+                menu.classList.remove('open');
+                setTimeout(() => menu.classList.add('hidden'), 300);
             });
         });
 
-        // Navbar Scroll Effect
+        // Navbar Shadow
         const navbar = document.getElementById('navbar');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 10) {
