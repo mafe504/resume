@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Musa Awad Abu Hadeed - Executive Portfolio</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    animation: { 'bounce-slow': 'bounce 3s infinite' }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="min-h-screen bg-slate-50 font-sans text-slate-900 overflow-x-hidden">
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 bg-transparent py-6">
+        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <div id="nav-logo-bg" class="w-10 h-10 rounded-lg flex items-center justify-center font-bold text-white bg-white/20 backdrop-blur-md transition-colors">M</div>
+                <span id="nav-logo-text" class="font-bold tracking-tight text-xl text-white transition-colors">Musa Awad Abu Hadeed</span>
+            </div>
+            
+            <div class="hidden md:flex gap-8 text-sm font-medium items-center">
+                <a href="#context" class="nav-link text-white/80 transition-colors hover:text-emerald-500">Context</a>
+                <a href="#pillars" class="nav-link text-white/80 transition-colors hover:text-emerald-500">Pillars</a>
+                <a href="#turnaround" class="nav-link text-white/80 transition-colors hover:text-emerald-500">Turnaround</a>
+                <a href="#awards" class="nav-link text-white/80 transition-colors hover:text-emerald-500">Awards</a>
+                <a id="nav-btn" href="https://musaah.me" class="px-4 py-2 rounded-full text-xs font-bold transition-all bg-white text-slate-900 hover:bg-slate-100">Home Page</a>
+            </div>
+
+            <button id="mobile-menu-btn" class="md:hidden text-white z-[70]">
+                <i data-lucide="menu" id="menu-icon"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="fixed inset-0 z-[60] bg-slate-900 flex-col items-center justify-center p-6 text-white hidden opacity-0 transition-opacity duration-300">
+        <div class="flex flex-col gap-8 text-2xl font-bold text-center">
+            <a href="#context" class="mobile-link hover:text-emerald-400">Context</a>
+            <a href="#pillars" class="mobile-link hover:text-emerald-400">Pillars</a>
+            <a href="#turnaround" class="mobile-link hover:text-emerald-400">Turnaround</a>
+            <a href="#awards" class="mobile-link hover:text-emerald-400">Awards</a>
+            <a href="https://musaah.me" class="mobile-link text-emerald-400 hover:text-emerald-300">Home Page</a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <header class="relative min-h-screen flex items-center pt-20 pb-12 bg-slate-900 text-white overflow-hidden">
+        <div class="absolute inset-0 opacity-20 pointer-events-none">
+            <div class="absolute top-20 right-20 w-64 h-64 md:w-96 md:h-96 bg-emerald-500 rounded-full blur-[80px] md:blur-[120px]"></div>
+            <div class="absolute bottom-20 left-20 w-48 h-48 md:w-64 md:h-64 bg-blue-500 rounded-full blur-[60px] md:blur-[100px]"></div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center relative z-10 w-full">
+            <div>
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-bold mb-6 tracking-widest uppercase">
+                    <i data-lucide="shield" class="w-4 h-4"></i> Executive Educational Leadership
+                </div>
+                <h1 class="text-4xl sm:text-5xl md:text-7xl font-extrabold leading-tight mb-6">
+                    Transforming Education through <span class="text-emerald-400">Technology & Resilience.</span>
+                </h1>
+                <p class="text-base sm:text-lg text-slate-300 mb-8 max-w-xl leading-relaxed">
+                    Visionary strategist, technologist, and Harvard GSE-trained leader dedicated to redefining urban education. Former Principal of Bab Al-Silsila Boys' School, Jerusalem.
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="#context" class="w-full sm:w-auto text-center px-8 py-4 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl font-bold transition-all transform hover:scale-105 shadow-xl shadow-emerald-600/20">
+                        Explore the Turnaround
+                    </a>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-2 gap-3 sm:gap-4 mt-8 md:mt-0">
+                <div class="space-y-3 sm:space-y-4 pt-0 md:pt-12">
+                    <div class="p-5 sm:p-6 bg-white/5 backdrop-blur-lg border border-white/10 rounded-3xl transform hover:-translate-y-2 transition-transform">
+                        <div class="text-2xl sm:text-3xl font-bold text-emerald-400 mb-1">-22%</div>
+                        <div class="text-slate-400 text-xs sm:text-sm">Achievement Gap</div>
+                    </div>
+                    <div class="p-5 sm:p-6 bg-white/5 backdrop-blur-lg border border-white/10 rounded-3xl transform hover:-translate-y-2 transition-transform">
+                        <div class="text-2xl sm:text-3xl font-bold text-blue-400 mb-1">96%</div>
+                        <div class="text-slate-400 text-xs sm:text-sm">Enrollment Growth</div>
+                    </div>
+                </div>
+                <div class="space-y-3 sm:space-y-4">
+                    <div class="p-5 sm:p-6 bg-white/5 backdrop-blur-lg border border-white/10 rounded-3xl transform hover:-translate-y-2 transition-transform">
+                        <div class="text-2xl sm:text-3xl font-bold text-purple-400 mb-1">+15%</div>
+                        <div class="text-slate-400 text-xs sm:text-sm">Student Grants</div>
+                    </div>
+                    <div class="p-5 sm:p-6 bg-white/5 backdrop-blur-lg border border-white/10 rounded-3xl transform hover:-translate-y-2 transition-transform">
+                        <div class="text-2xl sm:text-3xl font-bold text-amber-400 mb-1">$10k</div>
+                        <div class="text-slate-400 text-xs sm:text-sm">Budget Scaled</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- The Context Section -->
+    <section id="context" class="py-16 md:py-24 bg-white border-b border-slate-100">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-3xl mx-auto mb-12 md:mb-16">
+                <h2 class="text-xs sm:text-sm font-bold text-rose-500 uppercase tracking-widest mb-4">The Operating Environment</h2>
+                <h3 class="text-3xl sm:text-4xl font-bold text-slate-900 mb-6">Leading Through Geopolitical & Spatial Crisis</h3>
+                <p class="text-slate-600 leading-relaxed text-base sm:text-lg">
+                    Reversing urban "educational flight" required transforming the school from a constrained historic site into an inviolable <strong class="text-emerald-600">Psychological Safe Haven</strong> amidst extreme external friction.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6 md:gap-8">
+                <div class="p-8 md:p-10 rounded-[32px] bg-rose-50 border border-rose-100">
+                    <i data-lucide="alert-triangle" class="text-rose-500 mb-6 w-10 h-10"></i>
+                    <h4 class="text-xl md:text-2xl font-bold text-slate-900 mb-4">The Geopolitical Reality</h4>
+                    <ul class="space-y-4 text-sm md:text-base text-slate-700">
+                        <li class="flex gap-3"><div class="mt-1 flex-shrink-0"><i data-lucide="map-pin" class="text-rose-500 w-5 h-5"></i></div><span>Located in the epicenter of the historic Old City of Jerusalem, navigating perpetual security tensions and heavy military presence.</span></li>
+                        <li class="flex gap-3"><div class="mt-1 flex-shrink-0"><i data-lucide="brain" class="text-rose-500 w-5 h-5"></i></div><span>Daily commutes involve checkpoints and invasive searches, instilling <strong>chronic traumatic stress</strong> in students.</span></li>
+                        <li class="flex gap-3"><div class="mt-1 flex-shrink-0"><i data-lucide="users" class="text-rose-500 w-5 h-5"></i></div><span>Systemic marginalization and high poverty leading to severe "educational flight" to perceived safety in suburbs.</span></li>
+                    </ul>
+                </div>
+
+                <div class="p-8 md:p-10 rounded-[32px] bg-slate-100 border border-slate-200">
+                    <i data-lucide="building" class="text-slate-500 mb-6 w-10 h-10"></i>
+                    <h4 class="text-xl md:text-2xl font-bold text-slate-900 mb-4">The Architectural Reality</h4>
+                    <ul class="space-y-4 text-sm md:text-base text-slate-700">
+                        <li class="flex gap-3"><div class="mt-1 flex-shrink-0"><i data-lucide="map-pin" class="text-slate-500 w-5 h-5"></i></div><span>Housed in a converted Ottoman-era residential building, restricted to a mere <strong>407 square meters</strong> of floor space.</span></li>
+                        <li class="flex gap-3"><div class="mt-1 flex-shrink-0"><i data-lucide="alert-triangle" class="text-slate-500 w-5 h-5"></i></div><span>Rigid historic preservation laws strictly prohibit external expansion or new construction.</span></li>
+                        <li class="flex gap-3"><div class="mt-1 flex-shrink-0"><i data-lucide="building" class="text-slate-500 w-5 h-5"></i></div><span><strong>Zero traditional outdoor playground</strong> or recreational facilities due to the domestic, historic scaling.</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6 Pillars Section -->
+    <section id="pillars" class="py-16 md:py-24 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="mb-12 md:mb-16 text-center">
+                <h2 class="text-xs sm:text-sm font-bold text-emerald-600 uppercase tracking-widest mb-4">Strategic Execution</h2>
+                <h3 class="text-3xl sm:text-4xl font-bold text-slate-900 mb-6">The 6 Pillars of Transformation</h3>
+                <p class="text-slate-600 max-w-2xl mx-auto text-base">
+                    How a resource-depleted facility became a globally recognized hub of STEM, automation, and environmental sustainability.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+                <!-- Pillar 1 -->
+                <div class="bg-white p-6 md:p-8 rounded-[32px] border border-slate-100 shadow-lg shadow-slate-200/50 hover:shadow-xl transition-all group">
+                    <div class="w-12 h-12 md:w-14 md:h-14 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform"><i data-lucide="globe" class="w-6 h-6 md:w-7 md:h-7"></i></div>
+                    <h4 class="text-lg md:text-xl font-bold mb-3">Vision & Global Diplomacy</h4>
+                    <p class="text-slate-600 text-xs md:text-sm mb-6 leading-relaxed">Positioned the school on the global map by aligning local practices with international standards and reversing urban flight.</p>
+                    <ul class="text-xs md:text-sm text-slate-700 space-y-2 font-medium">
+                        <li>• Deploying students to <strong>digital camps in Morocco</strong></li>
+                        <li>• Environmental expeditions to <strong>Wadi Rum, Jordan</strong></li>
+                        <li>• Global Pen Pal program elevating English literacy</li>
+                    </ul>
+                </div>
+                <!-- Pillar 2 (Updated for PD) -->
+                <div class="bg-white p-6 md:p-8 rounded-[32px] border border-slate-100 shadow-lg shadow-slate-200/50 hover:shadow-xl transition-all group">
+                    <div class="w-12 h-12 md:w-14 md:h-14 bg-rose-50 text-rose-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform"><i data-lucide="graduation-cap" class="w-6 h-6 md:w-7 md:h-7"></i></div>
+                    <h4 class="text-lg md:text-xl font-bold mb-3">Teacher Capacity & PD</h4>
+                    <p class="text-slate-600 text-xs md:text-sm mb-6 leading-relaxed">Invested aggressively in faculty capacity building through bespoke PD platforms, forging high-level alliances to guarantee cutting-edge pedagogy.</p>
+                    <ul class="text-xs md:text-sm text-slate-700 space-y-2 font-medium">
+                        <li>• Founded <strong>EvolveED</strong> (AI & Trauma-Informed SEL)</li>
+                        <li>• <strong>70% tuition funding</strong> for faculty grad degrees</li>
+                        <li>• Partnerships with <strong>Harvard GSE</strong> & Al-Quds Univ.</li>
+                    </ul>
+                </div>
+                <!-- Pillar 3 -->
+                <div class="bg-white p-6 md:p-8 rounded-[32px] border border-slate-100 shadow-lg shadow-slate-200/50 hover:shadow-xl transition-all group">
+                    <div class="w-12 h-12 md:w-14 md:h-14 bg-purple-50 text-purple-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform"><i data-lucide="hand-heart" class="w-6 h-6 md:w-7 md:h-7"></i></div>
+                    <h4 class="text-lg md:text-xl font-bold mb-3">Financial Operations</h4>
+                    <p class="text-slate-600 text-xs md:text-sm mb-6 leading-relaxed">Engineered robust philanthropic initiatives to safeguard student dignity and equitable access to education.</p>
+                    <ul class="text-xs md:text-sm text-slate-700 space-y-2 font-medium">
+                        <li>• <strong>Secured 15% more grants</strong> for student programs</li>
+                        <li>• Architected the <strong>Banyan scholarship</strong> program</li>
+                        <li>• Scaled institutional budget to <strong>$10,000 baseline</strong></li>
+                    </ul>
+                </div>
+                <!-- Pillar 4 -->
+                <div class="bg-white p-6 md:p-8 rounded-[32px] border border-slate-100 shadow-lg shadow-slate-200/50 hover:shadow-xl transition-all group">
+                    <div class="w-12 h-12 md:w-14 md:h-14 bg-indigo-50 text-indigo-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform"><i data-lucide="wifi" class="w-6 h-6 md:w-7 md:h-7"></i></div>
+                    <h4 class="text-lg md:text-xl font-bold mb-3">Data-Driven Smart Ops</h4>
+                    <p class="text-slate-600 text-xs md:text-sm mb-6 leading-relaxed">Pioneered digital transformation with Power Apps and live AI analytics to identify and support at-risk students.</p>
+                    <ul class="text-xs md:text-sm text-slate-700 space-y-2 font-medium">
+                        <li>• <strong>Live AI notifications</strong> for falling-behind students</li>
+                        <li>• Real-time <strong>Power Apps Dashboard</strong> for tracking</li>
+                        <li>• First <strong>Smart Student Wallet</strong> in Jerusalem</li>
+                    </ul>
+                </div>
+                <!-- Pillar 5 -->
+                <div class="bg-white p-6 md:p-8 rounded-[32px] border border-slate-100 shadow-lg shadow-slate-200/50 hover:shadow-xl transition-all group">
+                    <div class="w-12 h-12 md:w-14 md:h-14 bg-amber-50 text-amber-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform"><i data-lucide="microscope" class="w-6 h-6 md:w-7 md:h-7"></i></div>
+                    <h4 class="text-lg md:text-xl font-bold mb-3">Academic & Space STEM</h4>
+                    <p class="text-slate-600 text-xs md:text-sm mb-6 leading-relaxed">Redesigned the physical environment and leveraged data analytics to directly improve student learning outcomes.</p>
+                    <ul class="text-xs md:text-sm text-slate-700 space-y-2 font-medium">
+                        <li>• <strong>Decreased achievement gap by 22%</strong> via targeted interventions</li>
+                        <li>• State-of-the-Art <strong>FabLab & Science Lab</strong> integration</li>
+                        <li>• Designed simulated zero-gravity tubes for the <strong>ISS</strong></li>
+                    </ul>
+                </div>
+                <!-- Pillar 6 -->
+                <div class="bg-white p-6 md:p-8 rounded-[32px] border border-slate-100 shadow-lg shadow-slate-200/50 hover:shadow-xl transition-all group">
+                    <div class="w-12 h-12 md:w-14 md:h-14 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform"><i data-lucide="leaf" class="w-6 h-6 md:w-7 md:h-7"></i></div>
+                    <h4 class="text-lg md:text-xl font-bold mb-3">Sustainable Culture</h4>
+                    <p class="text-slate-600 text-xs md:text-sm mb-6 leading-relaxed">Merged cutting-edge environmental stewardship with Trauma-Informed SEL to cultivate resilient youth leaders.</p>
+                    <ul class="text-xs md:text-sm text-slate-700 space-y-2 font-medium">
+                        <li>• <strong>AI-Driven Climate Control</strong> (-22% energy use)</li>
+                        <li>• Rooftop garden & central Olive Tree (Scout Troop)</li>
+                        <li>• <strong>Trauma-Informed Tele-Counseling</strong> network</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Turnaround Section (Tabs) -->
+    <section id="turnaround" class="py-16 md:py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-3xl mx-auto mb-12 md:mb-16">
+                <h2 class="text-xs sm:text-sm font-bold text-emerald-600 uppercase tracking-widest mb-4">The 4-Year Turnaround</h2>
+                <h3 class="text-3xl sm:text-4xl font-bold text-slate-900 mb-6">Institutional Polarity</h3>
+                <div class="flex flex-wrap justify-center p-1 bg-slate-50 rounded-xl shadow-sm border border-slate-200 w-fit mx-auto gap-1" id="tab-buttons">
+                    <button class="tab-btn px-4 sm:px-6 py-2 rounded-lg text-xs sm:text-sm font-bold transition-all bg-emerald-600 text-white shadow-lg" data-index="0">Spatial Optimization</button>
+                    <button class="tab-btn px-4 sm:px-6 py-2 rounded-lg text-xs sm:text-sm font-bold transition-all text-slate-500 hover:text-slate-800" data-index="1">Crisis to Growth</button>
+                    <button class="tab-btn px-4 sm:px-6 py-2 rounded-lg text-xs sm:text-sm font-bold transition-all text-slate-500 hover:text-slate-800" data-index="2">Digital Ecosystems</button>
+                    <button class="tab-btn px-4 sm:px-6 py-2 rounded-lg text-xs sm:text-sm font-bold transition-all text-slate-500 hover:text-slate-800" data-index="3">Global Innovation</button>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center bg-slate-50 p-6 md:p-12 rounded-[32px] md:rounded-[40px] shadow-inner border border-slate-100">
+                <!-- Dynamic Content Left -->
+                <div>
+                    <div id="tab-icon-container" class="w-12 h-12 md:w-14 md:h-14 rounded-2xl flex items-center justify-center text-white mb-6 bg-emerald-600 animate-bounce-slow">
+                        <i id="tab-icon" data-lucide="leaf" class="w-6 h-6 md:w-7 md:h-7"></i>
+                    </div>
+                    <h4 id="tab-title" class="text-2xl md:text-3xl font-bold mb-2">Environmental Polarity</h4>
+                    <p id="tab-subtitle" class="text-slate-500 font-medium mb-6 md:mb-8 italic">Spatial Optimization</p>
+                    
+                    <div class="space-y-6 md:space-y-8">
+                        <div>
+                            <div class="text-[10px] sm:text-xs font-bold text-slate-400 uppercase tracking-tighter mb-2">The Challenge</div>
+                            <div id="tab-challenge" class="p-3 md:p-4 text-sm md:text-base bg-rose-50 border-l-4 border-rose-500 text-rose-900 font-medium rounded-r-xl">
+                                407sqm Ottoman-era building, no playground, rigid preservation laws.
+                            </div>
+                        </div>
+                        <div>
+                            <div class="text-[10px] sm:text-xs font-bold text-slate-400 uppercase tracking-tighter mb-2">The 4-Year Solution</div>
+                            <div id="tab-solution" class="p-3 md:p-4 text-sm md:text-base bg-emerald-50 border-l-4 border-emerald-500 text-emerald-900 font-medium rounded-r-xl">
+                                Rooftop aquaponics, vertical FabLabs, and smart-board digitization.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dynamic Content Right -->
+                <div class="space-y-3 md:space-y-4">
+                    <div class="text-[10px] sm:text-xs font-bold text-slate-400 uppercase tracking-tighter mb-2 mt-6 md:mt-0">Measurable Impact Highlights</div>
+                    <div id="tab-details" class="space-y-3">
+                        <!-- Filled by JS -->
+                    </div>
+                    <div class="mt-6 md:mt-8 pt-6 md:pt-8 border-t border-slate-200 flex items-center gap-4">
+                        <div class="w-10 h-10 md:w-12 md:h-12 rounded-full bg-slate-200 flex-shrink-0 flex items-center justify-center italic text-slate-500 font-bold border-2 border-emerald-500 text-xs md:text-base">M.A.</div>
+                        <div>
+                            <div class="text-xs md:text-sm font-bold text-slate-900">Musa Awad Abu Hadeed</div>
+                            <div class="text-[10px] md:text-xs text-slate-500">Executive Strategic Lead</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Data & Analytics Section -->
+    <section id="data" class="py-16 md:py-24 bg-slate-50 overflow-hidden border-t border-slate-200">
+        <div class="max-w-7xl mx-auto px-6">
+            
+            <!-- Row 1: Enrollment & Budget -->
+            <div class="grid lg:grid-cols-2 gap-8 md:gap-16">
+                <!-- Enrollment Chart -->
+                <div class="p-6 md:p-10 rounded-[32px] md:rounded-[40px] bg-slate-900 text-white relative shadow-2xl">
+                    <div class="absolute top-6 right-6 md:top-10 md:right-10 flex gap-2">
+                        <div class="px-2 py-1 md:px-3 bg-emerald-500 text-white text-[8px] md:text-[10px] font-black rounded-full uppercase tracking-widest">100% Growth</div>
+                    </div>
+                    <h3 class="text-xl md:text-2xl font-bold mb-2 pr-20">Institutional Resilience</h3>
+                    <p class="text-slate-400 text-xs md:text-sm mb-6 md:mb-8">Reversing 'educational flight' through intense trust-building amidst Old City tensions.</p>
+                    <div class="h-[250px] md:h-[300px] w-full relative">
+                        <canvas id="enrollmentChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Budget Chart -->
+                <div class="p-6 md:p-10 rounded-[32px] md:rounded-[40px] bg-indigo-50 border border-indigo-100 shadow-xl">
+                    <h3 class="text-xl md:text-2xl font-bold text-slate-900 mb-2">Operational Budget Scaling</h3>
+                    <p class="text-slate-600 text-xs md:text-sm mb-6 md:mb-8">Strategically scaling resources from a $500 baseline to fund critical tech infrastructure.</p>
+                    <div class="h-[200px] md:h-[250px] w-full relative">
+                        <canvas id="budgetChart"></canvas>
+                    </div>
+                    <div class="grid grid-cols-2 gap-3 md:gap-4 mt-6 md:mt-8">
+                        <div class="p-3 md:p-4 bg-white rounded-2xl shadow-sm border border-indigo-100 group">
+                            <div class="text-[10px] md:text-xs font-bold text-slate-400 uppercase mb-1">Energy Saving</div>
+                            <div class="text-xl md:text-2xl font-bold text-emerald-600">-22%</div>
+                        </div>
+                        <div class="p-3 md:p-4 bg-white rounded-2xl shadow-sm border border-indigo-100 group">
+                            <div class="text-[10px] md:text-xs font-bold text-slate-400 uppercase mb-1">Budget Growth</div>
+                            <div class="text-xl md:text-2xl font-bold text-indigo-600">20x</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Achievement Gap Chart -->
+            <div class="mt-8 md:mt-16 p-6 md:p-10 rounded-[32px] md:rounded-[40px] bg-white border border-slate-200 shadow-xl flex flex-col lg:flex-row gap-8 md:gap-12 items-center">
+                <div class="w-full lg:w-1/3">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-50 text-purple-600 text-[10px] md:text-xs font-bold mb-4 md:mb-6 tracking-widest uppercase border border-purple-100">
+                        <i data-lucide="brain" class="w-3 h-3 md:w-4 md:h-4"></i> Predictive Analytics
+                    </div>
+                    <h3 class="text-2xl md:text-3xl font-bold text-slate-900 mb-3 md:mb-4">Closing the Achievement Gap</h3>
+                    <p class="text-slate-600 text-sm md:text-base mb-6 leading-relaxed">
+                        By deploying a custom <strong>Power Apps Dashboard</strong> with <strong>Live AI Notifications</strong>, we actively identified students falling behind in real-time. This data-driven intervention successfully decreased the historical achievement gap by <strong>22%</strong> while unlocking an additional <strong>15% in targeted grants</strong>.
+                    </p>
+                    <div class="space-y-3 md:space-y-4">
+                        <div class="flex items-center gap-3 md:gap-4 p-3 md:p-4 bg-slate-50 rounded-2xl">
+                            <div class="text-xl md:text-2xl font-black text-emerald-600">-22%</div>
+                            <div class="text-xs md:text-sm font-semibold text-slate-700">Reduction in Academic Gap</div>
+                        </div>
+                        <div class="flex items-center gap-3 md:gap-4 p-3 md:p-4 bg-slate-50 rounded-2xl">
+                            <div class="text-xl md:text-2xl font-black text-purple-600">+15%</div>
+                            <div class="text-xs md:text-sm font-semibold text-slate-700">Increase in Student Grants</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="w-full lg:w-2/3 h-[250px] md:h-[350px] relative">
+                    <canvas id="achievementChart"></canvas>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Awards Section -->
+    <section id="awards" class="py-16 md:py-24 bg-slate-900 text-white relative">
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 md:gap-8 mb-12 md:mb-16">
+                <div>
+                    <h2 class="text-emerald-400 font-bold uppercase tracking-widest text-xs md:text-sm mb-2 md:mb-4">Global Validation</h2>
+                    <h3 class="text-3xl sm:text-4xl md:text-5xl font-extrabold">Excellence Recognized</h3>
+                </div>
+                <p class="text-slate-400 text-sm md:text-base max-w-sm">Validation of strategy through regional and international awards for sustainability and leadership.</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+                <div class="p-6 md:p-8 bg-white/5 border-t-4 border-emerald-500 rounded-2xl hover:bg-white/10 transition-all flex flex-col group">
+                    <div class="text-emerald-400 font-black text-lg md:text-xl mb-4 group-hover:scale-110 transition-transform origin-left">2024-25</div>
+                    <div class="mb-4 text-white/40"><i data-lucide="globe" class="w-6 h-6 md:w-8 md:h-8"></i></div>
+                    <h4 class="text-lg md:text-xl font-bold mb-2 md:mb-3">UNESCO International Award</h4>
+                    <p class="text-slate-400 text-xs md:text-sm leading-relaxed">1st Place Global out of 150 schools. Awarded in Morocco for sustainable education and digital transformation.</p>
+                </div>
+                <div class="p-6 md:p-8 bg-white/5 border-t-4 border-blue-500 rounded-2xl hover:bg-white/10 transition-all flex flex-col group">
+                    <div class="text-blue-400 font-black text-lg md:text-xl mb-4 group-hover:scale-110 transition-transform origin-left">2025</div>
+                    <div class="mb-4 text-white/40"><i data-lucide="leaf" class="w-6 h-6 md:w-8 md:h-8"></i></div>
+                    <h4 class="text-lg md:text-xl font-bold mb-2 md:mb-3">Best Environment School</h4>
+                    <p class="text-slate-400 text-xs md:text-sm leading-relaxed">Recognized premier regional institution for green initiatives, zero-waste paperless policies, and urban farming.</p>
+                </div>
+                <div class="p-6 md:p-8 bg-white/5 border-t-4 border-purple-500 rounded-2xl hover:bg-white/10 transition-all flex flex-col group">
+                    <div class="text-purple-400 font-black text-lg md:text-xl mb-4 group-hover:scale-110 transition-transform origin-left">2024</div>
+                    <div class="mb-4 text-white/40"><i data-lucide="shield" class="w-6 h-6 md:w-8 md:h-8"></i></div>
+                    <h4 class="text-lg md:text-xl font-bold mb-2 md:mb-3">Scout Award for Leadership</h4>
+                    <p class="text-slate-400 text-xs md:text-sm leading-relaxed">Conferred for youth leadership and cultural endurance, symbolized by the school's central Olive Tree.</p>
+                </div>
+                <div class="p-6 md:p-8 bg-white/5 border-t-4 border-amber-500 rounded-2xl hover:bg-white/10 transition-all flex flex-col group">
+                    <div class="text-amber-400 font-black text-lg md:text-xl mb-4 group-hover:scale-110 transition-transform origin-left">2024</div>
+                    <div class="mb-4 text-white/40"><i data-lucide="award" class="w-6 h-6 md:w-8 md:h-8"></i></div>
+                    <h4 class="text-lg md:text-xl font-bold mb-2 md:mb-3">Soccer Schools Competition</h4>
+                    <p class="text-slate-400 text-xs md:text-sm leading-relaxed">2nd Place Regional Achievement - A monumental win highlighting physical education despite having zero playground space.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Table Section -->
+    <section class="py-16 md:py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <h3 class="text-2xl md:text-3xl font-bold mb-8 md:mb-12 text-center">Executive Impact Summary</h3>
+            <!-- Overflow wrapper for mobile scrolling -->
+            <div class="overflow-x-auto rounded-2xl md:rounded-[32px] border border-slate-100 shadow-xl shadow-slate-200/50">
+                <table class="w-full text-left border-collapse min-w-[700px]">
+                    <thead>
+                        <tr class="bg-slate-50">
+                            <th class="p-4 md:p-6 text-xs md:text-sm font-black text-slate-500 uppercase tracking-tighter">Focus Area</th>
+                            <th class="p-4 md:p-6 text-xs md:text-sm font-black text-slate-500 uppercase tracking-tighter">Initiative Implemented</th>
+                            <th class="p-4 md:p-6 text-xs md:text-sm font-black text-slate-500 uppercase tracking-tighter">Measurable Outcome</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-100 text-sm md:text-base">
+                        <tr class="hover:bg-slate-50/50 transition-colors">
+                            <td class="p-4 md:p-6 font-bold text-emerald-600">Student Outcomes</td>
+                            <td class="p-4 md:p-6 text-slate-700 font-medium">Power Apps Data & Predictive AI</td>
+                            <td class="p-4 md:p-6"><div class="flex items-center gap-2"><div class="w-2 h-2 rounded-full bg-emerald-500 flex-shrink-0"></div><span class="text-slate-900 font-semibold">Decreased achievement gap by 22%; Secured 15% more grants.</span></div></td>
+                        </tr>
+                        <tr class="hover:bg-slate-50/50 transition-colors">
+                            <td class="p-4 md:p-6 font-bold text-emerald-600">Teacher Capacity & PD</td>
+                            <td class="p-4 md:p-6 text-slate-700 font-medium">EvolveED, Harvard GSE & Al-Quds</td>
+                            <td class="p-4 md:p-6"><div class="flex items-center gap-2"><div class="w-2 h-2 rounded-full bg-emerald-500 flex-shrink-0"></div><span class="text-slate-900 font-semibold">70% funding secured for faculty graduate degrees; 10x PD growth.</span></div></td>
+                        </tr>
+                        <tr class="hover:bg-slate-50/50 transition-colors">
+                            <td class="p-4 md:p-6 font-bold text-emerald-600">Recognitions</td>
+                            <td class="p-4 md:p-6 text-slate-700 font-medium">Global & Regional Competitions</td>
+                            <td class="p-4 md:p-6"><div class="flex items-center gap-2"><div class="w-2 h-2 rounded-full bg-emerald-500 flex-shrink-0"></div><span class="text-slate-900 font-semibold">Won UNESCO Prize, Best Environment School, & Scout Award.</span></div></td>
+                        </tr>
+                        <tr class="hover:bg-slate-50/50 transition-colors">
+                            <td class="p-4 md:p-6 font-bold text-emerald-600">Resilience</td>
+                            <td class="p-4 md:p-6 text-slate-700 font-medium">Trust-Building Amidst Tensions</td>
+                            <td class="p-4 md:p-6"><div class="flex items-center gap-2"><div class="w-2 h-2 rounded-full bg-emerald-500 flex-shrink-0"></div><span class="text-slate-900 font-semibold">Enrollment grew from 28 to 55 students in 4 years.</span></div></td>
+                        </tr>
+                        <tr class="hover:bg-slate-50/50 transition-colors">
+                            <td class="p-4 md:p-6 font-bold text-emerald-600">Tech Innovation</td>
+                            <td class="p-4 md:p-6 text-slate-700 font-medium">Power Platform & AI Dashboards</td>
+                            <td class="p-4 md:p-6"><div class="flex items-center gap-2"><div class="w-2 h-2 rounded-full bg-emerald-500 flex-shrink-0"></div><span class="text-slate-900 font-semibold">Fully automated workflows; Live AI alerts for falling-behind students.</span></div></td>
+                        </tr>
+                        <tr class="hover:bg-slate-50/50 transition-colors">
+                            <td class="p-4 md:p-6 font-bold text-emerald-600">Infrastructure</td>
+                            <td class="p-4 md:p-6 text-slate-700 font-medium">Historic Campus Overhaul</td>
+                            <td class="p-4 md:p-6"><div class="flex items-center gap-2"><div class="w-2 h-2 rounded-full bg-emerald-500 flex-shrink-0"></div><span class="text-slate-900 font-semibold">Added Library, FabLab, Rooftop Farm, & Counselor Room.</span></div></td>
+                        </tr>
+                        <tr class="hover:bg-slate-50/50 transition-colors">
+                            <td class="p-4 md:p-6 font-bold text-emerald-600">Sustainability</td>
+                            <td class="p-4 md:p-6 text-slate-700 font-medium">IoT/AI Climate Systems</td>
+                            <td class="p-4 md:p-6"><div class="flex items-center gap-2"><div class="w-2 h-2 rounded-full bg-emerald-500 flex-shrink-0"></div><span class="text-slate-900 font-semibold">22% reduction in energy usage; 90% water conservation.</span></div></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 bg-slate-50 border-t border-slate-200">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6 text-center md:text-left">
+            <div>
+                <div class="text-slate-900 font-bold text-base md:text-lg mb-2">Musa Awad Abu Hadeed</div>
+                <div class="text-slate-500 text-xs md:text-sm max-w-xs mx-auto md:mx-0">Transforming education through technology, sustainability, and compassionate leadership.</div>
+            </div>
+            <div class="flex gap-4 md:gap-6">
+                <a href="https://musaah.me" class="p-3 bg-white rounded-full shadow-sm hover:shadow-md transition-all text-slate-400 hover:text-emerald-600"><i data-lucide="globe" class="w-5 h-5"></i></a>
+                <a href="#" class="p-3 bg-white rounded-full shadow-sm hover:shadow-md transition-all text-slate-400 hover:text-emerald-600"><i data-lucide="book-open" class="w-5 h-5"></i></a>
+            </div>
+            <div class="text-xs md:text-sm text-slate-400 font-medium">
+                © 2025 Executive Portfolio
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive Scripts -->
+    <script>
+        // Initialize Icons
+        lucide.createIcons();
+
+        // 1. Navbar Scroll Effect
+        const navbar = document.getElementById('navbar');
+        const navLogoBg = document.getElementById('nav-logo-bg');
+        const navLogoText = document.getElementById('nav-logo-text');
+        const navLinks = document.querySelectorAll('.nav-link');
+        const navBtn = document.getElementById('nav-btn');
+        const menuIcon = document.getElementById('menu-icon');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.replace('bg-transparent', 'bg-white');
+                navbar.classList.add('shadow-md', 'py-3');
+                navbar.classList.remove('py-6');
+                
+                navLogoBg.classList.replace('bg-white/20', 'bg-emerald-600');
+                navLogoText.classList.replace('text-white', 'text-slate-900');
+                
+                navLinks.forEach(link => {
+                    link.classList.replace('text-white/80', 'text-slate-600');
+                });
+                
+                navBtn.classList.replace('bg-white', 'bg-emerald-600');
+                navBtn.classList.replace('text-slate-900', 'text-white');
+                navBtn.classList.replace('hover:bg-slate-100', 'hover:bg-emerald-700');
+                
+                menuIcon.classList.add('text-slate-900');
+            } else {
+                navbar.classList.replace('bg-white', 'bg-transparent');
+                navbar.classList.remove('shadow-md', 'py-3');
+                navbar.classList.add('py-6');
+                
+                navLogoBg.classList.replace('bg-emerald-600', 'bg-white/20');
+                navLogoText.classList.replace('text-slate-900', 'text-white');
+                
+                navLinks.forEach(link => {
+                    link.classList.replace('text-slate-600', 'text-white/80');
+                });
+                
+                navBtn.classList.replace('bg-emerald-600', 'bg-white');
+                navBtn.classList.replace('text-white', 'text-slate-900');
+                navBtn.classList.replace('hover:bg-emerald-700', 'hover:bg-slate-100');
+                
+                menuIcon.classList.remove('text-slate-900');
+            }
+        });
+
+        // 2. Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+        let menuOpen = false;
+
+        function toggleMenu() {
+            menuOpen = !menuOpen;
+            if (menuOpen) {
+                mobileMenu.classList.remove('hidden');
+                setTimeout(() => mobileMenu.classList.remove('opacity-0'), 10);
+                menuIcon.setAttribute('data-lucide', 'x');
+                menuIcon.classList.remove('text-slate-900'); // Force white for overlay
+                lucide.createIcons();
+            } else {
+                mobileMenu.classList.add('opacity-0');
+                setTimeout(() => mobileMenu.classList.add('hidden'), 300);
+                menuIcon.setAttribute('data-lucide', 'menu');
+                if(window.scrollY > 50) menuIcon.classList.add('text-slate-900');
+                lucide.createIcons();
+            }
+        }
+
+        mobileMenuBtn.addEventListener('click', toggleMenu);
+        mobileLinks.forEach(link => link.addEventListener('click', toggleMenu));
+
+        // 3. Turnaround Tabs Data & Logic
+        const tabData = [
+            {
+                title: "Environmental Polarity", subtitle: "Spatial Optimization", icon: "leaf", color: "bg-emerald-600",
+                challenge: "407sqm Ottoman-era building, no playground, rigid preservation laws.",
+                solution: "Rooftop aquaponics, vertical FabLabs, and smart-board digitization.",
+                details: ["90% Water reduction via Aquaponics", "7 Interactive Smart Boards installed", "Carved out dedicated Counselor & Science labs"]
+            },
+            {
+                title: "Institutional Polarity", subtitle: "Crisis to Growth", icon: "users", color: "bg-blue-600",
+                challenge: "Chronic trauma, security checkpoints, and educational flight.",
+                solution: "Enrollment doubled, trauma-informed tele-counseling, and Banyan scholarships.",
+                details: ["96% Enrollment growth", "26 Students received Eid clothing", "Established Jerusalem's first 'Psychological Sanctuary'"]
+            },
+            {
+                title: "Operational Polarity", subtitle: "Digital Ecosystems", icon: "cpu", color: "bg-indigo-600",
+                challenge: "Analog management vulnerable to geopolitical lockdowns.",
+                solution: "Microsoft Power Platform automation, AI notifications, and smart dashboards.",
+                details: ["Live AI alerts for falling-behind students", "Power Apps real-time tracking dashboard", "Digital wallet for secure student transactions"]
+            },
+            {
+                title: "Pedagogical Polarity", subtitle: "Global Innovation", icon: "brain", color: "bg-purple-600",
+                challenge: "Historical achievement gaps and stressed demographics.",
+                solution: "Data-driven interventions, AI Professional Development, and ISS research.",
+                details: ["Decreased achievement gap by 22%", "70% Graduate funding for faculty", "Secured 15% more grants for student programs"]
+            }
+        ];
+
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const tabIconContainer = document.getElementById('tab-icon-container');
+        const tabIcon = document.getElementById('tab-icon');
+        const tabTitle = document.getElementById('tab-title');
+        const tabSubtitle = document.getElementById('tab-subtitle');
+        const tabChallenge = document.getElementById('tab-challenge');
+        const tabSolution = document.getElementById('tab-solution');
+        const tabDetails = document.getElementById('tab-details');
+
+        function updateTab(index) {
+            const data = tabData[index];
+            
+            // Update Buttons UI
+            tabBtns.forEach((btn, i) => {
+                if (i === parseInt(index)) {
+                    btn.className = `tab-btn px-4 sm:px-6 py-2 rounded-lg text-xs sm:text-sm font-bold transition-all text-white shadow-lg ${data.color}`;
+                } else {
+                    btn.className = "tab-btn px-4 sm:px-6 py-2 rounded-lg text-xs sm:text-sm font-bold transition-all text-slate-500 hover:text-slate-800";
+                }
+            });
+
+            // Update Content
+            tabIconContainer.className = `w-12 h-12 md:w-14 md:h-14 rounded-2xl flex items-center justify-center text-white mb-6 animate-bounce-slow ${data.color}`;
+            tabIcon.setAttribute('data-lucide', data.icon);
+            lucide.createIcons(); // Re-render updated icon
+            
+            tabTitle.textContent = data.title;
+            tabSubtitle.textContent = data.subtitle;
+            tabChallenge.textContent = data.challenge;
+            tabSolution.textContent = data.solution;
+            
+            tabDetails.innerHTML = data.details.map(detail => `
+                <div class="flex items-center gap-3 md:gap-4 p-3 md:p-5 bg-white rounded-2xl border border-slate-100 shadow-sm group hover:border-emerald-500/30 transition-all">
+                    <i data-lucide="check-circle-2" class="text-emerald-500 w-5 h-5 flex-shrink-0"></i>
+                    <span class="font-semibold text-slate-800 text-xs md:text-sm">${detail}</span>
+                </div>
+            `).join('');
+            lucide.createIcons(); // render checklist icons
+        }
+
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => updateTab(e.target.dataset.index));
+        });
+
+        // Initialize First Tab
+        updateTab(0);
+
+        // 4. Chart.js Initialization
+        Chart.defaults.font.family = "'Inter', sans-serif";
+        Chart.defaults.color = "#94a3b8";
+
+        // Enrollment Chart (Line)
+        new Chart(document.getElementById('enrollmentChart'), {
+            type: 'line',
+            data: {
+                labels: ['Year 1', 'Year 2', 'Year 3', 'Year 4'],
+                datasets: [{
+                    label: 'Students',
+                    data: [28, 34, 45, 55],
+                    borderColor: '#10b981',
+                    backgroundColor: '#10b981',
+                    borderWidth: 4,
+                    pointRadius: 6,
+                    pointBackgroundColor: '#10b981',
+                    pointBorderColor: '#0f172a',
+                    pointBorderWidth: 2,
+                    tension: 0.3
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false }, tooltip: { backgroundColor: '#1e293b', padding: 12, cornerRadius: 8 } },
+                scales: {
+                    y: { grid: { color: '#334155', borderDash: [5, 5] }, beginAtZero: false },
+                    x: { grid: { display: false } }
+                }
+            }
+        });
+
+        // Budget Chart (Bar)
+        new Chart(document.getElementById('budgetChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Baseline', 'Current'],
+                datasets: [{
+                    label: 'Budget ($)',
+                    data: [500, 10000],
+                    backgroundColor: ['#94a3b8', '#4f46e5'],
+                    borderRadius: 8,
+                    barPercentage: 0.6
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false }, tooltip: { backgroundColor: '#1e293b', padding: 12, cornerRadius: 8 } },
+                scales: {
+                    y: { grid: { color: '#e2e8f0', borderDash: [5, 5] }, ticks: { callback: function(value) { return '$' + value; } } },
+                    x: { grid: { display: false }, ticks: { font: { weight: 'bold' } } }
+                }
+            }
+        });
+
+        // Achievement Gap Chart (Line)
+        new Chart(document.getElementById('achievementChart'), {
+            type: 'line',
+            data: {
+                labels: ['2021', '2022', '2023', '2024'],
+                datasets: [{
+                    label: 'Gap Index',
+                    data: [100, 90, 82, 78],
+                    borderColor: '#a855f7',
+                    backgroundColor: '#a855f7',
+                    borderWidth: 4,
+                    pointRadius: 6,
+                    pointBackgroundColor: '#a855f7',
+                    pointBorderColor: '#ffffff',
+                    pointBorderWidth: 2,
+                    tension: 0.3
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false }, tooltip: { backgroundColor: '#1e293b', padding: 12, cornerRadius: 8 } },
+                scales: {
+                    y: { grid: { color: '#e2e8f0', borderDash: [5, 5] }, min: 60, max: 100 },
+                    x: { grid: { display: false } }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
