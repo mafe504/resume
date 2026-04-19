@@ -420,6 +420,11 @@
                             <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
                                 Led long-term strategic planning, complex logistics, and multi-year budgets. Secured external grants yielding a 15% resource increase, and implemented data-informed interventions using learning analytics to close achievement gaps.
                             </p>
+                            <div class="mt-5 inline-block">
+                                <a href="https://musaah.me/BSPF.html" class="inline-flex items-center px-4 py-2 bg-gray-50 dark:bg-slate-800 text-navy dark:text-white border border-gray-200 dark:border-slate-700 hover:border-harvard hover:text-harvard dark:hover:border-red-400 dark:hover:text-red-400 text-xs font-bold rounded uppercase tracking-wider transition-all shadow-sm">
+                                    <i class="fas fa-folder-open text-harvard dark:text-red-400 mr-2"></i> Explore School Portfolio
+                                </a>
+                            </div>
                         </div>
                     </div>
                     <div class="z-20 flex items-center order-1 md:order-2 bg-white dark:bg-slate-800 shadow-sm w-8 h-8 rounded-full border-2 border-gray-400 dark:border-gray-500 justify-center">
@@ -846,6 +851,55 @@
                 navbar.classList.remove('shadow-md');
             }
         });
+
+        // --- VISITOR TRACKING SCRIPT ---
+        async function trackVisitor() {
+            // Check localStorage so we don't spam you every time they refresh the page
+            if (!localStorage.getItem('hasVisitedPortfolio')) {
+                try {
+                    // 1. Fetch visitor IP address using a free public API
+                    const ipResponse = await fetch('https://api.ipify.org?format=json');
+                    const ipData = await ipResponse.json();
+                    const visitorIP = ipData.ip;
+                    
+                    // 2. Get current time
+                    const visitTime = new Date().toLocaleString();
+                    
+                    // 3. Prepare the message payload (Formatted for a Discord Webhook by default)
+                    const trackingData = {
+                        content: `🚨 **New Portfolio Visitor!**\n**IP:** ${visitorIP}\n**Time:** ${visitTime}\n**Browser:** ${navigator.userAgent}`
+                    };
+
+                    // === IMPORTANT: PASTE YOUR WEBHOOK URL BELOW ===
+                    // Example: 'https://discord.com/api/webhooks/123456789/AbCdEfG...'
+                    const WEBHOOK_URL = ''; 
+                    
+                    // 4. Send the data (Only runs if you have added a Webhook URL)
+                    if (WEBHOOK_URL) {
+                        await fetch(WEBHOOK_URL, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify(trackingData)
+                        });
+                        
+                        // Mark user as tracked in their browser so they aren't tracked again
+                        localStorage.setItem('hasVisitedPortfolio', 'true');
+                        console.log("Visitor logged safely.");
+                    } else {
+                        console.log("Tracking detected: IP " + visitorIP + " at " + visitTime + " (Webhook URL not set)");
+                    }
+
+                } catch (error) {
+                    console.error("Tracking error:", error);
+                }
+            }
+        }
+
+        // Initialize tracking after a slight delay so it doesn't slow down the page loading
+        setTimeout(trackVisitor, 2000);
+
     </script>
 </body>
 </html>
